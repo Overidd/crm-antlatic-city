@@ -1,10 +1,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { LayoutAuth } from '@/ui/layout/auth';
+import { AppLayout, LayoutAuth } from '@/ui/layout/auth';
 import { LoginScreen, RecoverScreen } from '../screen/auth';
 
 const PrivateRoute = () => (
    <Routes>
-      <Route path="/" element={<h1>Pagina privada</h1>} />
+      <Route
+         path='/'
+         element={<AppLayout />}
+      >
+
+
+      </Route>
    </Routes>
 )
 
