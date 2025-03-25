@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { AppLayout, LayoutAuth } from '@/ui/layout/auth';
+import { LayoutAuth } from '@/ui/layout/auth';
+import { AppLayout } from '@/ui/layout/dashboard';
 import { LoginScreen, RecoverScreen } from '../screen/auth';
+import { Promotions } from '../screen/dashboard';
 
 const PrivateRoute = () => (
    <Routes>
@@ -8,8 +10,8 @@ const PrivateRoute = () => (
          path='/'
          element={<AppLayout />}
       >
-
-
+         <Route path='/promotion' element={<Promotions />} />
+         <Route path="/*" element={<Navigate to="/auth/login" replace />} />
       </Route>
    </Routes>
 )
@@ -31,8 +33,7 @@ export const RouterApp = () => {
       <BrowserRouter>
          <Routes>
             <Route path="/auth/*" element={<PublicRoute />} />
-            <Route path="/home/*" element={<PrivateRoute />} />
-            <Route path="/*" element={<Navigate to="/auth/login" replace />} />
+            <Route path="/*" element={<PrivateRoute />} />
          </Routes>
       </BrowserRouter>
    )

@@ -91,11 +91,9 @@
       @apply bg-gray-200 rounded-full dark:bg-gray-700;
    }
 
+   /** Se aplica en la pagina de login y register */
    .gradient-bg {
-      @apply bg-gradient-to-t from-secondary-light-200 to-secondary-light-300 
+      @apply bg-[linear-gradient(to_top_right,_#b79044_0%,_#000000_70%)]
    }
-   /* dark:from-gray-900 dark:to-gray-800; */
-   /* background: linear-gradient(to right top, #b225ca 20%, #4d1969); */
-   
 }
 

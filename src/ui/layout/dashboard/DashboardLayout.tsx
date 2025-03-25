@@ -1,8 +1,7 @@
 import AppHeader from "@/ui/container/header/AppHeader";
 import AppSidebar from "@/ui/container/sidebar/AppSidebar"
 import { SidebarProvider, useSidebar } from "@/ui/context";
-
-
+import { Outlet } from "react-router-dom";
 
 
 export const DashboardLayout = () => {
@@ -20,7 +19,7 @@ export const DashboardLayout = () => {
          >
             <AppHeader />
             <div className="p-4 mx-auto max-w-screen-2xl md:p-6">
-               {/* <Outlet /> */}
+               <Outlet />
             </div>
          </div>
       </div>

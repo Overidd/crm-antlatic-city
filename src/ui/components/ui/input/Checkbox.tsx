@@ -39,7 +39,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
          />
 
          {/* Checkbox visual */}
-         <div className="w-4 h-4 mr-2 rounded-md bg-color-purple-dark peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%">
+         <div className="w-4 h-4 mr-2 rounded-md bg-tertiary-light-300 peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%">
          </div>
 
          {label && (

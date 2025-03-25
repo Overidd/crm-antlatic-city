@@ -13,7 +13,7 @@ export const LoginScreen = () => {
          <Input
             type="password"
             placeholder="password"
-            icon="password"
+            icon="user"
          />
          <Container>
             <Checkbox
