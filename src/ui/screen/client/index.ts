@@ -1,2 +1,2 @@
 export * from './Clients';
-export * from './ClientFilter';
+export * from '../../container/client/ClientFilter';

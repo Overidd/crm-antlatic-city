@@ -1,6 +1,6 @@
-import { Ellipsis } from 'lucide-react';
 import { Checkbox } from '@/ui/components/ui';
 import { tableData } from '@/data/clientData';
+import { ClientPopverDetail } from './ClientPopverDetail';
 import {
    Table,
    TableBody,
@@ -8,6 +8,7 @@ import {
    TableHeader,
    TableRow
 } from '@/ui/components/ui/table';
+
 
 const tableHeaderData = [
    {
@@ -109,7 +110,7 @@ export const TableClients = () => {
                      </TableCell>
 
                      <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
-                        <Ellipsis />
+                        <ClientPopverDetail />
                      </TableCell>
                   </TableRow>
                ))}

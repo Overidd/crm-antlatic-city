@@ -1,12 +1,8 @@
 import { useState } from 'react';
+import { ClientActionFilter, ClientSheetFilter } from '@/ui/container/client/ClientFilter';
 import { PageBreadCrumb, Pagination } from '@/ui/components/ui/common';
 import { ComponentCard } from '@/ui/components/ui/card';
 import { TableClients } from '@/ui/container/client';
-
-import {
-   ClientActionFilter,
-   ClientSheetFilter
-} from './ClientFilter';
 
 export const Clients = () => {
    const [currentPage, setCurrentPage] = useState(1)
