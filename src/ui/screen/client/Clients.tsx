@@ -1,16 +1,7 @@
 import { useState } from 'react';
-import {
-   PageBreadCrumb,
-   Pagination
-} from '@/ui/components/ui/common';
-
-import {
-   ComponentCard
-} from '@/ui/components/ui/card';
-
-import {
-   TableClients
-} from '@/ui/container/client';
+import { PageBreadCrumb, Pagination } from '@/ui/components/ui/common';
+import { ComponentCard } from '@/ui/components/ui/card';
+import { TableClients } from '@/ui/container/client';
 
 import {
    ClientActionFilter,
@@ -26,7 +17,6 @@ export const Clients = () => {
          <PageBreadCrumb pageTitle="Clientes" />
          <ClientActionFilter />
          <ClientSheetFilter />
-         {/* <section className="space-y-6"> */}
          <ComponentCard title="Clientes">
             <TableClients />
             <Pagination
@@ -37,7 +27,6 @@ export const Clients = () => {
                className="mt-6"
             />
          </ComponentCard>
-         {/* </section> */}
       </>
    );
 }

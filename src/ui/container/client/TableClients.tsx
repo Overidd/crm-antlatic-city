@@ -1,5 +1,6 @@
 import { Ellipsis } from 'lucide-react';
 import { Checkbox } from '@/ui/components/ui';
+import { tableData } from '@/data/clientData';
 import {
    Table,
    TableBody,
@@ -8,111 +9,43 @@ import {
    TableRow
 } from '@/ui/components/ui/table';
 
-interface IClients {
-   id: number;
-   avatar: string;
-   name: string;
-   username: string;
-   email: string;
-   city: string;
-   expense: string;
-}
-
-// Define the table data using the interface
-const tableData: IClients[] = [
-   {
-      id: 1,
-      avatar: '/user/userDefault.png',
-      name: "Lindsey Curtis",
-      username: "pepe",
-      email: "pepe@gmail.com",
-      city: "Arequipa",
-      expense: "12.3K",
-   },
-   {
-      id: 2,
-      avatar: '/user/userDefault.png',
-      name: "Kaiya George",
-      username: "carlos",
-      email: "carlos@gmail.com",
-      city: "Lima",
-      expense: "12.3K",
-   },
-   {
-      id: 3,
-      avatar: '/user/userDefault.png',
-      name: "Zain Geidt",
-      username: "megarPillo",
-      email: "megarPillo@gmail.com",
-      city: "Lima",
-      expense: "12.7K",
-   },
-   {
-      id: 4,
-      avatar: '/user/userDefault.png',
-      name: "Lindsey Curtis",
-      username: "pepe",
-      email: "pepe@gmail.com",
-      city: "Arequipa",
-      expense: "12.3K",
-   },
-   {
-      id: 5,
-      avatar: '/user/userDefault.png',
-      name: "Kaiya George",
-      username: "carlos",
-      email: "carlos@gmail.com",
-      city: "Lima",
-      expense: "12.3K",
-   },
-   {
-      id: 6,
-      avatar: '/user/userDefault.png',
-      name: "Zain Geidt",
-      username: "megarPillo",
-      email: "megarPillo@gmail.com",
-      city: "Lima",
-      expense: "12.7K",
-   }
-];
-
 const tableHeaderData = [
    {
       id: 1,
-      value: "",
-      element: <Checkbox width="w-5" height="h-5" />
+      value: '',
+      element: <Checkbox width='w-5' height='h-5' />,
    },
    {
       id: 2,
-      value: "Avatar",
+      value: 'Avatar',
       element: null,
    },
    {
       id: 3,
-      value: "Username",
+      value: 'Username',
       element: null,
    },
    {
       id: 4,
-      value: "Email",
+      value: 'Email',
       element: null,
    },
    {
       id: 5,
-      value: "Ciudad",
+      value: 'Ciudad',
       element: null,
    },
    {
       id: 6,
-      value: "Gasto",
+      value: 'Gasto',
       element: null,
    }
 ];
 
 export const TableClients = () => {
    return (
-      <div className="bg-transparent overflow-hidden" >
-         <Table className="max-w-full overflow-x-auto">
+      <div className="bg-transparent overflow-y-auto" >
+         <Table className="max-w-full">
             <TableHeader className="border-b-2 border-tertiary-light-200">
                <TableRow>
                   {
@@ -144,7 +77,6 @@ export const TableClients = () => {
             <TableBody className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]">
                {tableData.map(({ id, avatar, name, username, email, city, expense }) => (
                   <TableRow key={id} className='hover:bg-tertiary-light-200 transition-[background-color]'>
-
                      <TableCell className="pl-4">
                         <Checkbox width="w-5" height="h-5" />
                      </TableCell>
@@ -167,12 +99,15 @@ export const TableClients = () => {
                      <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
                         {email}
                      </TableCell>
+
                      <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
                         {city}
                      </TableCell>
+
                      <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
                         {expense}
                      </TableCell>
+
                      <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
                         <Ellipsis />
                      </TableCell>
