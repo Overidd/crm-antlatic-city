@@ -5,7 +5,7 @@ interface FileInputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FileInput: FC<FileInputProps> = ({ className, onChange }) => {
+export const File: FC<FileInputProps> = ({ className, onChange }) => {
   return (
     <input
       type="file"
@@ -14,5 +14,3 @@ const FileInput: FC<FileInputProps> = ({ className, onChange }) => {
     />
   );
 };
-
-export default FileInput;

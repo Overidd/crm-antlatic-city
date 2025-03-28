@@ -1,4 +1,4 @@
-import { useTheme } from "@/ui/context/ThemeContext";
+import { useTheme } from "@/ui/context/theme/ThemeContext";
 import { Moon, SunMoon } from "lucide-react";
 import React from "react";
 

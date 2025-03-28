@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
-import { Container } from "@/ui/common"
-import { Button, Checkbox, Input } from "@/ui/components/ui"
+import { Link } from 'react-router-dom';
+import { Button, Checkbox, Input } from '@/ui/components/ui';
+import { Container } from '@/ui/components/ui/common';
 
 export const LoginScreen = () => {
    return (

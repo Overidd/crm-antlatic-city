@@ -2,13 +2,15 @@ import { clsx } from "@/ui/util";
 import React from "react";
 
 interface CheckboxProps {
-   label: string;
+   label?: string;
    checked?: boolean;
    className?: string;
    id?: string;
    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
    disabled?: boolean;
    subLabel?: React.ReactNode,
+   width?: string,
+   height?: string,
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -18,6 +20,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
    onChange,
    className = "",
    disabled = false,
+   width = "w-4",
+   height = "h-4",
 }) => {
 
    const inputClasses = clsx(
@@ -39,7 +43,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
          />
 
          {/* Checkbox visual */}
-         <div className="w-4 h-4 mr-2 rounded-md bg-tertiary-light-300 peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%">
+         <div className={`${width} ${height} mr-2 rounded-md bg-tertiary-light-300 peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%`}>
          </div>
 
          {label && (

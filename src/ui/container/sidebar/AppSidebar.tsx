@@ -14,14 +14,14 @@ type NavItem = {
 const navItems: NavItem[] = [
    {
       icon: <LayoutDashboard className="text-inherit" />,
-      name: "Dashboard",
+      name: "dashboard",
       path: "/",
    },
 
    {
-      name: "Clientes",
+      name: "clientes",
       icon: <Users className="text-inherit" />,
-      path: "/client",
+      path: "/clients",
    },
    {
       name: "Perfil del Cliente",
@@ -83,7 +83,7 @@ const navItems: NavItem[] = [
 //    },
 // ];
 
-const AppSidebar: React.FC = () => {
+export const AppSidebar: React.FC = () => {
    const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
    const location = useLocation();
 

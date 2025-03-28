@@ -13,7 +13,7 @@ import { AlignLeft, Ellipsis, Search, X } from "lucide-react";
 // import UserDropdown from "../components/header/UserDropdown";
 // NotificationDropdown
 
-const AppHeader: React.FC = () => {
+export const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
@@ -47,9 +47,9 @@ const AppHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 flex w-full bg-tertiary-light-400 text-white border-gray-200 z-50 dark:border-gray-800 dark:bg-gray-900 ">
+    <header className="sticky top-0 flex w-full bg-tertiary-light-400 text-white z-50">
       <div className="flex flex-col items-center justify-between flex-grow lg:flex-row lg:px-6">
-        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 dark:border-gray-800 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
+        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 dark:border-gray-800 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
           <button
             className="bg-tertiary-light-100 flex items-center justify-center w-10 h-10 text-gray-500 rounded-lg z-50 lg:h-11 lg:w-11"
             onClick={handleToggle}
