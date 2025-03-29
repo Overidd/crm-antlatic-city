@@ -11,6 +11,7 @@ interface CheckboxProps {
    subLabel?: React.ReactNode,
    width?: string,
    height?: string,
+   bgCheck?: string
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -18,10 +19,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
    checked,
    id,
    onChange,
-   className = "",
+   className = '',
    disabled = false,
-   width = "w-4",
-   height = "h-4",
+   width = 'w-4',
+   height = 'h-4',
+   bgCheck = 'bg-tertiary-light-300'
 }) => {
 
    const inputClasses = clsx(
@@ -31,7 +33,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
    return (
       <label
-         className={`flex items-center cursor-pointer ${disabled ? "cursor-not-allowed opacity-60" : ""}`}
+         className={`flex items-center cursor-pointer w-fit ${disabled ? "cursor-not-allowed opacity-60" : ""}`}
       >
          <input
             id={id}
@@ -43,7 +45,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
          />
 
          {/* Checkbox visual */}
-         <div className={`${width} ${height} mr-2 rounded-md bg-tertiary-light-300 peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%`}>
+         <div className={`${width} ${height} mr-2 rounded-md peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90% ${bgCheck}`}>
          </div>
 
          {label && (

@@ -18,7 +18,7 @@ export const Sheet = ({
    className,
    timeAnimation = 300,
    position = 'right',
-   width = '30%',
+   width = '20rem',
    height = '100%',
 }: SheetProps) => {
    const { isOpen, closeSheet } = useSheet(idSheet);
@@ -68,10 +68,10 @@ export const Sheet = ({
       );
 
       const dimensionStyles = {
-         right: { width, height: '100%' },
-         left: { width, height: '100%' },
-         top: { width: '100%', height },
-         bottom: { width: '100%', height },
+         right: `w-full h-full`,
+         left: `w-full h-full`,
+         top: `w-full`,
+         bottom: `w-full`,
       };
 
       const transformStyles = {
@@ -84,9 +84,8 @@ export const Sheet = ({
       return clsx(
          baseStyles,
          `transition-transform ease-out`,
-         transformStyles[position],
-         dimensionStyles[position].width,
-         dimensionStyles[position].height
+         transformStyles[position].toString(),
+         dimensionStyles[position].toString(),
       );
    };
 
@@ -107,11 +106,11 @@ export const Sheet = ({
 
          {/* Sheet Content */}
          <div
-            className={`${getSheetStyles()} h-full overflow-auto bg-tertiary-light-300 text-white`}
+            className={`overflow-auto bg-tertiary-light-100 text-white ${getSheetStyles()}`}
             style={{
                transitionDuration: `${timeAnimation}ms`,
-               width: position === 'right' || position === 'left' ? width : '100%',
-               height: position === 'top' || position === 'bottom' ? height : '100%'
+               maxWidth: (position === 'right' || position === 'left') && (window.innerWidth > 768) ? width : '100%',
+               maxHeight: (position === 'top' || position === 'bottom') && (window.innerHeight > 768) ? height : '100%',
             }}
          >
             {/* <div className=""> */}

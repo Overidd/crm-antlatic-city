@@ -1,6 +1,14 @@
 import { Filter, X } from 'lucide-react';
 import {
-   Input
+   ClientExpenseLevelFilter,
+   ClientFilterGames,
+   ClientLocationFilter,
+   ClientStatusFilter
+} from '.';
+
+import {
+   Button,
+   Input,
 } from '@/ui/components/ui';
 
 import {
@@ -8,16 +16,18 @@ import {
    SheetTrigger
 } from '@/ui/components/ui/sheet';
 
+const dataGames = ['Poker', 'Blackjack', 'Roulette', 'Gates of Olympus']
+
 export const ClientActionFilter = () => {
    return (
       <div className="flex justify-end gap-3 mb-4">
          <Input
-            variant="outlined"
             placeholder="Buscar por nombre"
+            variant="outlined"
             icon="search"
          />
          <SheetTrigger.Open
-            idSheet='filter'
+            idSheet="filter"
             className="bg-tertiary-light-100 text-secondary-light-200 font-semibold rounded-lg cursor-pointer inline-block space-x-2 p-3"
          >
             <Filter className="inline-block align-middle" />
@@ -31,15 +41,31 @@ export const ClientSheetFilter = () => {
    return (
       <Sheet
          idSheet="filter"
-         position="right"  // 'right', 'left', 'top', 'bottom'
-         timeAnimation={300}  // Duración de la animación en ms
+         position="right"
+         timeAnimation={300}
+         className="p-4 bg-tertiary-light-100"
+         width='25rem'
       >
-         <SheetTrigger.Close
-            idSheet='filter'
-            className="absolute top-3 right-3 cursor-pointer"
-         >
-            <X size={30} />
-         </SheetTrigger.Close>
+         <section className="flex flex-row gap-4 justify-between">
+            <SheetTrigger.Close
+               idSheet="filter"
+            >
+               <X size={30} />
+            </SheetTrigger.Close>
+            <Button
+               variant="outline"
+               label="Limpiar Filtro"
+               className="max-w-fit text-secondary-light-200"
+            />
+         </section>
+
+         <section className="space-y-5">
+            <ClientFilterGames dataGames={dataGames} />
+            <ClientExpenseLevelFilter />
+            <ClientStatusFilter />
+            <ClientLocationFilter />
+         </section>
       </Sheet>
    )
 }
+
