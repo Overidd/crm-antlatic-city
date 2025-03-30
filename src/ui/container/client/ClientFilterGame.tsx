@@ -2,7 +2,7 @@ import { ComponentCard2 } from '@/ui/components/ui/card';
 import { ToggleGroup, ToggleItem } from '@/ui/components/ui/toggle';
 import { useRef } from 'react';
 
-const dataGames = ['Poker', 'Blackjack', 'Roulette', 'Gates of Olympus']
+const dataGames = ['Poker', 'Black jack', 'Roulette', 'Gates of Olympus']
 
 interface ClientFilterGamesProps {
    onClientFilterGames: (data: string[]) => void

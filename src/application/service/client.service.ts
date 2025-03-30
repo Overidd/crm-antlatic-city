@@ -1,3 +1,4 @@
+import { IGetAll } from '@/domain/interface';
 import { ClientApi } from '@/infrastructure/api';
 
 
@@ -7,21 +8,15 @@ export class ClientService {
       readonly clientApi: ClientApi
    ) { }
 
-   // private convertToNumber(data: unknown) {
-   //    return Object.entries(data!).map(([key, value]) => ({ [key]: parseInt(value) }));
-   // }
 
-   public getAll = async (page: number, limit: number) => {
 
+   public getAll = async (data: IGetAll) => {
       try {
-         const clients = await this.clientApi.getAll(page, limit);
+         const clients = await this.clientApi.getAll(data);
 
          return {
             ok: true,
-            clients: {
-               ...clients,
-               // pagination: this.convertToNumber(clients.pagination)
-            },
+            clients,
          }
       } catch (error) {
          return {

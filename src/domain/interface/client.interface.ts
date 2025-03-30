@@ -7,14 +7,13 @@ export interface IClient {
    email: string;
    city: string;
    totalExpenses: string;
+   status: string;
    GamePreferences: string[]
 }
 
 export interface IClientPagination {
-   first: number,
-   prev: number,
-   next: number,
-   last: number,
+   prev: number | null,
+   next: number | null,
    pages: number,
    items: number,
    currentPage?: number
@@ -23,4 +22,20 @@ export interface IClientPagination {
 export interface IClientAll {
    pagination: IClientPagination
    data: IClient[],
+}
+
+export interface IFilter {
+   search: string,
+   gamePreferences: string[],
+   maxExpenses: number,
+   minExpenses: number,
+   status: string,
+   location: string,
+}
+
+
+export interface IGetAll {
+   page: number;
+   limit: number;
+   filter?: IFilter;
 }

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IClient, IClientPagination } from '@/domain/interface';
+import { IClient, IClientPagination, IFilter } from '@/domain/interface';
 
 export const clientSlice = createSlice({
    name: 'clients',
    initialState: {
       clients: [] as IClient[],
       pagination: {} as IClientPagination,
+      filter: {} as IFilter,
       status: false,
       messageError: ''
    },
@@ -27,7 +28,7 @@ export const clientSlice = createSlice({
       },
 
       clientFilterGames: (state, { payload }) => {
-         state.clients = state.clients.filter(client => client.GamePreferences.some(game => payload.includes(game)));
+         state.filter.gamePreferences = payload
       }
 
    },
