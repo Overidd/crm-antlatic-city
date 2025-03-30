@@ -1,12 +1,29 @@
 import { ComponentCard2 } from '@/ui/components/ui/card';
 import { SliderRange } from '@/ui/components/ui/slider';
 
-export const ClientExpenseLevelFilter = () => {
+
+interface IProps {
+   onChange: (min: number, max: number) => void
+   initalMin: number
+   initalMax: number
+}
+
+export const ClientExpenseLevelFilter = ({
+   onChange,
+   initalMin,
+   initalMax,
+}: IProps) => {
    return (
       <ComponentCard2
          title="Nivel de Gastos"
       >
-         <SliderRange min={0} max={100} />
+         <SliderRange
+            min={1}
+            max={50000}
+            defaultMax={initalMax}
+            defaultMin={initalMin}
+            onChange={onChange}
+         />
 
       </ComponentCard2>
    )

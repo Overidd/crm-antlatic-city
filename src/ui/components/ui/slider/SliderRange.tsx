@@ -6,7 +6,7 @@ interface SliderRangeProps {
    step?: number
    defaultMin?: number
    defaultMax?: number
-   onChange?: (values: { min: number; max: number }) => void
+   onChange?: (min: number, max: number) => void
    formatValue?: (value: number) => string
    className?: string
    currency?: string
@@ -91,7 +91,7 @@ export const SliderRange: React.FC<SliderRangeProps> = ({
 
          // Notify parent component of change
          if (onChange) {
-            onChange({ min: minValue, max: maxValue })
+            onChange(minValue, maxValue)
          }
       }
    }
@@ -116,7 +116,7 @@ export const SliderRange: React.FC<SliderRangeProps> = ({
    // Notify parent component of initial values
    useEffect(() => {
       if (onChange) {
-         onChange({ min: minValue, max: maxValue })
+         // onChange(minValue, maxValue)
       }
    }, [])
 
@@ -126,7 +126,7 @@ export const SliderRange: React.FC<SliderRangeProps> = ({
       if (!isNaN(value) && value >= min && value <= maxValue - step) {
          setMinValue(value)
          if (onChange) {
-            onChange({ min: value, max: maxValue })
+            onChange(minValue, maxValue)
          }
       }
    }
@@ -136,7 +136,7 @@ export const SliderRange: React.FC<SliderRangeProps> = ({
       if (!isNaN(value) && value <= max && value >= minValue + step) {
          setMaxValue(value)
          if (onChange) {
-            onChange({ min: minValue, max: value })
+            onChange(minValue, maxValue)
          }
       }
    }

@@ -17,14 +17,25 @@ import {
    SheetTrigger,
 } from '@/ui/components/ui/sheet';
 import { useClients } from '@/presentation/hook';
+import { useInput } from '@/ui/hook';
 
 
 export const ClientActionFilter = () => {
+   const { applySearchFilter, filter: { search } } = useClients();
+   const { handleInputChange } = useInput({ initalState: { search } })
+
+   const onChange = handleInputChange(({ value }) => {
+      applySearchFilter(value);
+   })
+
    return (
       <div className="flex justify-end gap-3 mb-4">
          <Input
-            placeholder="Buscar por nombre"
+            onChange={onChange}
+            className='md:w-[25rem]'
+            placeholder="Buscar por nombre username o email"
             variant="outlined"
+            name='search'
             icon="search"
          />
          <SheetTrigger.Open
@@ -39,7 +50,13 @@ export const ClientActionFilter = () => {
 }
 
 export const ClientSheetFilter = () => {
-   const { handleClientFilterGames } = useClients();
+   const {
+      applyGameFilter,
+      applyExpenseFilter,
+      applyStatusFilter,
+      applyLocationFilter,
+      filter: { gamePreferences, maxExpenses, minExpenses, status, location }
+   } = useClients();
    return (
       <Sheet
          idSheet="filter"
@@ -62,12 +79,23 @@ export const ClientSheetFilter = () => {
          </section>
 
          <section className="space-y-5">
-            <ClientFilterGames 
-               onClientFilterGames={handleClientFilterGames}
+            <ClientFilterGames
+               initialSelect={gamePreferences}
+               onClientFilterGames={applyGameFilter}
             />
-            <ClientExpenseLevelFilter />
-            <ClientStatusFilter />
-            <ClientLocationFilter />
+            <ClientExpenseLevelFilter
+               initalMax={maxExpenses}
+               initalMin={minExpenses}
+               onChange={applyExpenseFilter}
+            />
+            <ClientStatusFilter
+               initialSelect={status}
+               onChangeCheck={applyStatusFilter}
+            />
+            <ClientLocationFilter
+               initialSelect={location}
+               onChangeSelect={applyLocationFilter}
+            />
          </section>
       </Sheet>
    )

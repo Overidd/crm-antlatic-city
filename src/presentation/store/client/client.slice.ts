@@ -4,34 +4,65 @@ import { IClient, IClientPagination, IFilter } from '@/domain/interface';
 export const clientSlice = createSlice({
    name: 'clients',
    initialState: {
+      errorMessage: '',
+      isLoading: false,
       clients: [] as IClient[],
       pagination: {} as IClientPagination,
       filter: {} as IFilter,
-      status: false,
-      messageError: ''
    },
    reducers: {
-      setSaving: (state) => {
-         state.status = true;
-         state.messageError = '';
+      setLoading: (state) => {
+         state.isLoading = true;
+         state.errorMessage = '';
       },
 
-      setClients: (state, { payload: { data, pagination } }) => {
+      errorLoading: (state, { payload }) => {
+         state.errorMessage = payload;
+      },
+
+      loadClientsSuccess: (state, { payload: { data, pagination } }) => {
          state.clients = data;
          state.pagination = pagination;
-         state.status = false;
-         state.messageError = '';
+         state.isLoading = false;
+         state.errorMessage = '';
       },
 
-      clientError: (state, { payload }) => {
-         state.messageError = payload;
+      loadClientsFailure: (state, { payload }) => {
+         state.errorMessage = payload;
+         state.isLoading = false;
       },
 
-      clientFilterGames: (state, { payload }) => {
-         state.filter.gamePreferences = payload
+      updateGameFilter: (state, { payload }) => {
+         state.filter.gamePreferences = payload;
+      },
+
+      updateExpenseFilter: (state, { payload: { min, max } }) => {
+         state.filter.minExpenses = min;
+         state.filter.maxExpenses = max;
+      },
+
+      updateStatusFilter: (state, { payload }) => {
+         state.filter.status = payload;
+      },
+
+      updateLocationFilter: (state, { payload }) => {
+         state.filter.location = payload;
+      },
+
+      updateSearchFilter: (state, { payload }) => {
+         state.filter.search = payload;
       }
-
    },
 });
 
-export const { setSaving, setClients, clientError, clientFilterGames } = clientSlice.actions
+export const {
+   setLoading,
+   errorLoading,
+   loadClientsSuccess,
+   loadClientsFailure,
+   updateGameFilter,
+   updateExpenseFilter,
+   updateStatusFilter,
+   updateLocationFilter,
+   updateSearchFilter,
+} = clientSlice.actions;

@@ -1,15 +1,20 @@
+import { useRef } from 'react';
 import { ComponentCard2 } from '@/ui/components/ui/card';
 import { ToggleGroup, ToggleItem } from '@/ui/components/ui/toggle';
-import { useRef } from 'react';
 
 const dataGames = ['Poker', 'Black jack', 'Roulette', 'Gates of Olympus']
 
 interface ClientFilterGamesProps {
    onClientFilterGames: (data: string[]) => void
+   initialSelect: string[]
 }
 
-export const ClientFilterGames = ({ onClientFilterGames }: ClientFilterGamesProps) => {
-   const dataSelect = useRef<string[]>([])
+export const ClientFilterGames = ({
+   onClientFilterGames,
+   initialSelect,
+}: ClientFilterGamesProps) => {
+
+   const dataSelect = useRef<string[]>(initialSelect || [])
 
    const addDataSelect = (data: string) => {
       if (dataSelect.current.includes(data)) {
@@ -19,7 +24,6 @@ export const ClientFilterGames = ({ onClientFilterGames }: ClientFilterGamesProp
       }
       onClientFilterGames(dataSelect.current)
    }
-
 
    return (
       <ComponentCard2
@@ -32,6 +36,7 @@ export const ClientFilterGames = ({ onClientFilterGames }: ClientFilterGamesProp
                      key={index}
                      text={game}
                      onChange={addDataSelect}
+                     checked={initialSelect?.includes(game) ?? false}
                   />
                ))
             }

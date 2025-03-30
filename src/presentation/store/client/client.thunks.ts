@@ -1,7 +1,7 @@
 import { ClientService } from '@/application/service';
 import { ClientApi } from '@/infrastructure/api';
 import { AppDispatch, RootState } from '../store';
-import { clientError, setClients } from './client.slice';
+import { errorLoading, loadClientsSuccess } from './client.slice';
 
 const clientService = new ClientService(new ClientApi());
 
@@ -15,11 +15,11 @@ const fetchClients = (page: number, limit: number) => {
       });
 
       if (!ok) {
-         dispatch(clientError(messageError));
+         dispatch(errorLoading(messageError));
          return;
       }
       // currentPage
-      dispatch(setClients({
+      dispatch(loadClientsSuccess({
          data: clients?.data, pagination: {
             ...clients?.pagination,
             currentPage: page

@@ -40,7 +40,7 @@ export class ClientApi {
          const searchLower = filter.search?.toLowerCase() || "";
          const matchesSearch = (searchLower)
             ? (item.email.toLowerCase().includes(searchLower) ||
-               item.firstName.toLowerCase().includes(searchLower))
+               item.firstName.toLowerCase().includes(searchLower)) || item.username.toLowerCase().includes(searchLower)
             : true
 
          // item.lastName?.toLowerCase().includes(searchLower));
@@ -52,12 +52,15 @@ export class ClientApi {
 
          const totalExpenses = parseInt(item.totalExpenses, 10) || 0;
 
-         const matchesExpenses =
-            (filter.minExpenses == null || totalExpenses >= filter.minExpenses) &&
-            (filter.maxExpenses == null || totalExpenses <= filter.maxExpenses);
+         const matchesExpenses = (filter.minExpenses ? totalExpenses >= filter.minExpenses : true) && (filter.maxExpenses ? totalExpenses <= filter.maxExpenses : true);
 
-         const matchesStatus = filter.status ? item.status.toLowerCase() === filter.status.toLowerCase() : true;
-         const matchesLocation = filter.location ? item.city.toLowerCase() === filter.location.toLowerCase() : true;
+         const matchesStatus = (filter.status)
+            ? item.status.toLowerCase() === filter.status.toLowerCase()
+            : true;
+
+         const matchesLocation = (filter.location)
+            ? this.compareString()(item.country.toLowerCase(), filter.location.toLowerCase()) === 0 || filter.location.toLowerCase() === 'all'
+            : true;
 
          return (
             matchesSearch &&
@@ -67,8 +70,15 @@ export class ClientApi {
             matchesLocation
          );
       });
-
    };
+
+   private compareString = () => {
+      return new Intl.Collator('es', { sensitivity: 'base' }).compare;
+   }
+
+   // private normalizeAccentString = () => {
+   // return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+   // }
 
    private applyPagination = (page: number, limit: number) => {
       page = Math.max(1, page); // Asegura que no sea menor a 1

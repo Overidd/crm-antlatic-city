@@ -1,24 +1,23 @@
+import { countrys } from '@/data';
 import { InputSelect } from '@/ui/components/ui';
 import { ComponentCard2 } from '@/ui/components/ui/card';
 
-export const ClientLocationFilter = () => {
+
+interface Props {
+   onChangeSelect: (value: string) => void;
+   initialSelect?: string
+}
+
+export const ClientLocationFilter = ({ onChangeSelect, initialSelect }: Props) => {
 
    return (
       <ComponentCard2
          title='Localización'
       >
          <InputSelect
-            options={[{
-               value: '1',
-               label: 'Ciudad 1'
-            }, {
-               value: '2',
-               label: 'Ciudad 2'
-            }, {
-               value: '3',
-               label: 'Ciudad 3'
-            }]}
-            onChange={() => { }}
+            defaultValue={initialSelect}
+            options={countrys}
+            onChange={onChangeSelect}
          />
       </ComponentCard2>
    )

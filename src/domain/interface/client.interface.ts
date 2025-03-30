@@ -5,7 +5,7 @@ export interface IClient {
    username: string;
    firstName: string;
    email: string;
-   city: string;
+   country: string;
    totalExpenses: string;
    status: string;
    GamePreferences: string[]

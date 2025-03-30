@@ -33,7 +33,7 @@ const tableHeaderData = [
    },
    {
       id: 5,
-      value: 'Ciudad',
+      value: 'Paise',
       element: null,
    },
    {
@@ -79,7 +79,7 @@ export const TableClients = ({ clients }: IClientTableProps) => {
 
             {/* Table Body */}
             <TableBody className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]">
-               {clients.map(({ id, avatar, username, email, city, totalExpenses, firstName }) => (
+               {clients.map(({ id, avatar, username, email, totalExpenses, firstName,country }) => (
                   <TableRow key={id} className='hover:bg-tertiary-light-200 transition-[background-color]'>
                      <TableCell className="pl-4">
                         <Checkbox width="w-5" height="h-5" />
@@ -105,7 +105,7 @@ export const TableClients = ({ clients }: IClientTableProps) => {
                      </TableCell>
 
                      <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
-                        {city}
+                        {country}
                      </TableCell>
 
                      <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
