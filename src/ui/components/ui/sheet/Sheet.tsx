@@ -21,27 +21,19 @@ export const Sheet = ({
    width = '20rem',
    height = '100%',
 }: SheetProps) => {
+
    const { isOpen, closeSheet } = useSheet(idSheet);
    const [mounted, setMounted] = useState(false);
 
-   // Control the mounting/unmounting of the component
    useEffect(() => {
-      // if (!isOpen) {
       const timer = setTimeout(() => {
          setMounted(isOpen);
       }, timeAnimation);
 
       return () => clearTimeout(timer);
-      // }
-
-      // setMounted(true);
 
    }, [isOpen, timeAnimation]);
 
-   if (!mounted && !isOpen) return null;
-
-
-   // Determine position styles based on the position prop
    const getPositionStyles = () => {
       const baseStyles = 'fixed inset-0 z-50 flex';
 
@@ -59,7 +51,6 @@ export const Sheet = ({
       }
    };
 
-   // Determine sheet content styles based on position
    const getSheetStyles = () => {
       const baseStyles = clsx(
          'shadow-lg',
@@ -74,12 +65,21 @@ export const Sheet = ({
          bottom: `w-full`,
       };
 
-      const transformStyles = {
-         right: (mounted && isOpen) ? 'translate-x-0' : 'translate-x-full',
-         left: (mounted && isOpen) ? 'translate-x-0' : '-translate-x-full',
-         top: (mounted && isOpen) ? 'translate-y-0' : '-translate-y-full',
-         bottom: (mounted && isOpen) ? 'translate-y-0' : 'translate-y-full',
+      let transformStyles = {
+         right: (mounted) ? 'translate-x-0' : 'translate-x-full',
+         left: (mounted) ? 'translate-x-0' : '-translate-x-full',
+         top: (mounted) ? 'translate-y-0' : '-translate-y-full',
+         bottom: (mounted) ? 'translate-y-0' : 'translate-y-full',
       };
+
+      if (!isOpen) {
+         transformStyles = {
+            right: (isOpen) ? 'translate-x-0' : 'translate-x-full',
+            left: (isOpen) ? 'translate-x-0' : '-translate-x-full',
+            top: (isOpen) ? 'translate-y-0' : '-translate-y-full',
+            bottom: (isOpen) ? 'translate-y-0' : 'translate-y-full',
+         };
+      }
 
       return clsx(
          baseStyles,
@@ -89,22 +89,19 @@ export const Sheet = ({
       );
    };
 
-
    return (
-      <div className={getPositionStyles()}>
-         {/* Backdrop/Overlay */}
+      <div className={`${getPositionStyles()} ${(mounted || isOpen) ? 'block' : 'hidden'}`}>
          <div
+            aria-hidden="true"
+            onClick={() => closeSheet(idSheet)}
             className={clsx(
                "fixed inset-0 bg-tertiary-light-300/60",
                "transition-opacity duration-300",
                isOpen ? "opacity-100" : "opacity-0"
             )}
-            aria-hidden="true"
-            onClick={() => closeSheet(idSheet)}
          >
          </div>
 
-         {/* Sheet Content */}
          <div
             className={`overflow-auto bg-tertiary-light-100 text-white ${getSheetStyles()}`}
             style={{
@@ -113,9 +110,7 @@ export const Sheet = ({
                maxHeight: (position === 'top' || position === 'bottom') && (window.innerHeight > 768) ? height : '100%',
             }}
          >
-            {/* <div className=""> */}
             {children}
-            {/* </div> */}
          </div>
       </div>
    );

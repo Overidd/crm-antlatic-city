@@ -23,7 +23,7 @@ export const Popover = ({ icon, text, className, children }: PopoverProps) => {
       const { offsetTop, offsetHeight } = popoverElement.current;
       const windowHeight = window.innerHeight;
       console.log(offsetTop + offsetHeight, windowHeight);
-      setCalculatedPosition((offsetTop + offsetHeight + 100) >= windowHeight ? 'bottom-[50%]' : 'top-[50%]');
+      setCalculatedPosition((offsetTop + offsetHeight + 200) >= windowHeight ? 'bottom-[50%]' : 'top-[50%]');
    }, [isOpen]);
 
 
@@ -56,7 +56,7 @@ export const Popover = ({ icon, text, className, children }: PopoverProps) => {
             {text && <span>{text}</span>}
          </button>
 
-         <div className={`min-w-[10rem] absolute z-10 ${calculatedPosition} right-8 transform transition-all ${isOpen ? 'scale-100' : 'scale-0'}`}>
+         <div className={`min-w-[7rem] absolute z-10 ${calculatedPosition} right-8 transform transition-all ${isOpen ? 'scale-100' : 'scale-0'}`}>
             <div className="bg-tertiary-light-200 shadow-md rounded-lg p-4 space-y-3">
                {children}
             </div>

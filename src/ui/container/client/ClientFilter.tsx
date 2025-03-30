@@ -1,4 +1,5 @@
 import { Filter, X } from 'lucide-react';
+
 import {
    ClientExpenseLevelFilter,
    ClientFilterGames,
@@ -13,10 +14,10 @@ import {
 
 import {
    Sheet,
-   SheetTrigger
+   SheetTrigger,
 } from '@/ui/components/ui/sheet';
+import { useClients } from '@/presentation/hook';
 
-const dataGames = ['Poker', 'Blackjack', 'Roulette', 'Gates of Olympus']
 
 export const ClientActionFilter = () => {
    return (
@@ -38,13 +39,14 @@ export const ClientActionFilter = () => {
 }
 
 export const ClientSheetFilter = () => {
+   const { handleClientFilterGames } = useClients();
    return (
       <Sheet
          idSheet="filter"
          position="right"
          timeAnimation={300}
-         className="p-4 bg-tertiary-light-100"
          width='25rem'
+         className="bg-tertiary-light-100 snap-none overflow-hidden space-y-4 py-4 px-8"
       >
          <section className="flex flex-row gap-4 justify-between">
             <SheetTrigger.Close
@@ -60,7 +62,9 @@ export const ClientSheetFilter = () => {
          </section>
 
          <section className="space-y-5">
-            <ClientFilterGames dataGames={dataGames} />
+            <ClientFilterGames 
+               onClientFilterGames={handleClientFilterGames}
+            />
             <ClientExpenseLevelFilter />
             <ClientStatusFilter />
             <ClientLocationFilter />

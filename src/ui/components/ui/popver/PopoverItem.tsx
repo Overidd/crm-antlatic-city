@@ -10,7 +10,7 @@ interface PopoverItemProps extends React.HTMLAttributes<HTMLButtonElement> {
 export const PopoverItem = ({ text, icon, className, props }: PopoverItemProps) => {
    return (
       <button
-         className={`flex items-center gap-2 ${className}`}
+         className={`flex items-center font-semibold gap-2 ${className}`}
          {...props}
       >
          {

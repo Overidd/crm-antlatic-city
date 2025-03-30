@@ -9,8 +9,11 @@ import {
    useSidebar,
    SheetProvider
 } from '@/ui/context';
+import { useCheckAuth } from '@/presentation/hook';
 
 const Layout = () => {
+   useCheckAuth();
+
    const {
       isExpanded,
       isHovered,

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { PageBreadCrumb, Pagination } from '@/ui/components/ui/common';
 import { ComponentCard } from '@/ui/components/ui/card';
 import {
@@ -6,10 +5,15 @@ import {
    ClientActionFilter,
    ClientSheetFilter
 } from '@/ui/container/client';
+import { useClients } from '@/presentation/hook';
 
 export const Clients = () => {
-   const [currentPage, setCurrentPage] = useState(1)
-   const totalPages = 20
+   const {
+      clients,
+      getClientsByPage,
+      pagination: { pages, currentPage }
+   } = useClients()
+
 
    return (
       <>
@@ -17,12 +21,12 @@ export const Clients = () => {
          <ClientActionFilter />
          <ClientSheetFilter />
          <ComponentCard title="Clientes">
-            <TableClients />
+            <TableClients clients={clients} />
             <Pagination
-               currentPage={currentPage}
-               totalPages={totalPages}
-               onPageChange={setCurrentPage}
-               siblingCount={1}
+               currentPage={currentPage || 1}
+               totalPages={pages}
+               onPageChange={getClientsByPage}
+               siblingCount={2}
                className="mt-6"
             />
          </ComponentCard>
