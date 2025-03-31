@@ -59,7 +59,6 @@ export const ClientSheetFilter = () => {
       filter: { gamePreferences, maxExpenses, minExpenses, status, location }
    } = useClients();
 
-   // console.log({gamePreferences, maxExpenses, minExpenses, status, location})
    return (
       <Sheet
          idSheet="filter"

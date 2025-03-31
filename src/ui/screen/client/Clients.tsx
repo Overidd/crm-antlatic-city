@@ -10,8 +10,8 @@ import { useClients } from '@/presentation/hook';
 export const Clients = () => {
    const {
       clients,
-      getClientsByPage,
-      pagination: { pages, currentPage }
+      fetchClientsByPage,
+      pagination: { pages, currentPage },
    } = useClients()
 
 
@@ -25,7 +25,7 @@ export const Clients = () => {
             <Pagination
                currentPage={currentPage || 1}
                totalPages={pages}
-               onPageChange={getClientsByPage}
+               onPageChange={fetchClientsByPage}
                siblingCount={2}
                className="mt-6"
             />
