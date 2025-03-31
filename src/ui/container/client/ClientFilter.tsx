@@ -55,8 +55,11 @@ export const ClientSheetFilter = () => {
       applyExpenseFilter,
       applyStatusFilter,
       applyLocationFilter,
+      applyClearFilter,
       filter: { gamePreferences, maxExpenses, minExpenses, status, location }
    } = useClients();
+
+   // console.log({gamePreferences, maxExpenses, minExpenses, status, location})
    return (
       <Sheet
          idSheet="filter"
@@ -72,6 +75,7 @@ export const ClientSheetFilter = () => {
                <X size={30} />
             </SheetTrigger.Close>
             <Button
+               onClick={applyClearFilter}
                variant="outline"
                label="Limpiar Filtro"
                className="max-w-fit text-secondary-light-200"
@@ -84,8 +88,8 @@ export const ClientSheetFilter = () => {
                onClientFilterGames={applyGameFilter}
             />
             <ClientExpenseLevelFilter
-               initalMax={maxExpenses}
                initalMin={minExpenses}
+               initalMax={maxExpenses}
                onChange={applyExpenseFilter}
             />
             <ClientStatusFilter

@@ -8,7 +8,14 @@ export const clientSlice = createSlice({
       isLoading: false,
       clients: [] as IClient[],
       pagination: {} as IClientPagination,
-      filter: {} as IFilter,
+      filter: {
+         gamePreferences: [],
+         minExpenses: 0,
+         maxExpenses: 0,
+         status: '',
+         location: '',
+         search: '',
+      } as IFilter,
    },
    reducers: {
       setLoading: (state) => {
@@ -51,7 +58,18 @@ export const clientSlice = createSlice({
 
       updateSearchFilter: (state, { payload }) => {
          state.filter.search = payload;
-      }
+      },
+
+      clearFilter: (state) => {
+         state.filter = {
+            gamePreferences: [],
+            minExpenses: 0,
+            maxExpenses: 0,
+            status: '',
+            location: '',
+            search: '',
+         };
+      },
    },
 });
 
@@ -65,4 +83,5 @@ export const {
    updateStatusFilter,
    updateLocationFilter,
    updateSearchFilter,
+   clearFilter,
 } = clientSlice.actions;

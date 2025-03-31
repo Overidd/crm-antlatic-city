@@ -20,8 +20,8 @@ export const ClientExpenseLevelFilter = ({
          <SliderRange
             min={1}
             max={50000}
-            defaultMax={initalMax}
-            defaultMin={initalMin}
+            defaultMin={initalMin || 0}
+            defaultMax={initalMax || 50000}
             onChange={onChange}
          />
 

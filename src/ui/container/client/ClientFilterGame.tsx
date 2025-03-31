@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { ComponentCard2 } from '@/ui/components/ui/card';
 import { ToggleGroup, ToggleItem } from '@/ui/components/ui/toggle';
 
@@ -15,6 +15,10 @@ export const ClientFilterGames = ({
 }: ClientFilterGamesProps) => {
 
    const dataSelect = useRef<string[]>(initialSelect || [])
+
+   useEffect(() => {
+      dataSelect.current = initialSelect || []
+   }, [initialSelect])
 
    const addDataSelect = (data: string) => {
       if (dataSelect.current.includes(data)) {

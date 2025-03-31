@@ -115,10 +115,10 @@ export const SliderRange: React.FC<SliderRangeProps> = ({
 
    // Notify parent component of initial values
    useEffect(() => {
-      if (onChange) {
-         // onChange(minValue, maxValue)
-      }
-   }, [])
+      if (defaultMin === minValue && defaultMax === maxValue) return;
+      setMinValue(defaultMin)
+      setMaxValue(defaultMax)
+   }, [defaultMax, defaultMin])
 
    // Handle input changes
    const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

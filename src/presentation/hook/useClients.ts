@@ -7,6 +7,7 @@ import {
    updateStatusFilter,
    updateLocationFilter,
    updateSearchFilter,
+   clearFilter,
 } from '../store/client';
 
 export const useClients = () => {
@@ -42,6 +43,15 @@ export const useClients = () => {
       dispatch(startGetClientsByPage(1));
    }
 
+   const applyClearFilter = () => {
+      if (Object.values(clientsState.filter).every((value) => {
+         if (Array.isArray(value)) return !value.length
+         return !value
+      })) return;
+      dispatch(clearFilter());
+      dispatch(startGetClientsByPage(1));
+   }
+
    return {
       ...clientsState,
       dispatch,
@@ -51,5 +61,6 @@ export const useClients = () => {
       applyStatusFilter,
       applyLocationFilter,
       applySearchFilter,
+      applyClearFilter,
    };
 };
