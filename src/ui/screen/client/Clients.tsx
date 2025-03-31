@@ -8,16 +8,19 @@ import {
 import {
    TableClients,
    ClientActionFilter,
-   ClientSheetFilter
+   ClientSheetFilter,
+   ClientActionBtnModal,
+   ModalAddPromotion,
+   ModalDeleteClient,
 } from '@/ui/container/client';
-
 
 export const Clients = () => {
    const {
       clients,
-      selectedClients,
       fetchClientsByPage,
+      selectedClients,
       setSelectedClient,
+      hasSelectedClient,
       pagination: { pages, currentPage },
    } = useClients()
 
@@ -40,6 +43,18 @@ export const Clients = () => {
                className="mt-6"
             />
          </ComponentCard>
+         {hasSelectedClient() && (
+            <ClientActionBtnModal
+               currentData={selectedClients}
+            />
+         )}
+         <ModalAddPromotion
+            currentData={selectedClients}
+         />
+         <ModalDeleteClient
+            currentData={selectedClients}
+         />
       </>
    );
 }
+

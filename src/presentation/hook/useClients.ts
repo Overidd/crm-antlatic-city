@@ -64,6 +64,8 @@ export const useClients = () => {
       dispatch(selectedClient(idClient))
    };
 
+   const hasSelectedClient = () => clientsState.selectedClients.length > 0;
+
    return {
       ...clientsState,
       dispatch,
@@ -75,5 +77,6 @@ export const useClients = () => {
       applySearchFilter,
       applyClearFilter,
       setSelectedClient,
+      hasSelectedClient,
    };
 };

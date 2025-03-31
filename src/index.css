@@ -102,3 +102,8 @@
 .apexcharts-yaxis text {
    fill: white ;
 }
+
+html{
+   scrollbar-width: thin;
+   scrollbar-color: #b79044 #000000;
+}
