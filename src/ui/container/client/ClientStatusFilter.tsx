@@ -13,11 +13,8 @@ export const ClientStatusFilter = ({
 }: Props) => {
 
    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked, value } = e.target;
-      if (!checked) return onChangeCheck('');
-      onChangeCheck(value);
+      onChangeCheck(e.target.value);
    }
-
    return (
       <ComponentCard2
          title='Estado del Cliente'

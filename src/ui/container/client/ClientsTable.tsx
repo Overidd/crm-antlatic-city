@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Checkbox } from '@/ui/components/ui';
 import { ClientPopverDetail } from './ClientPopverDetail';
 import { IClient } from '@/domain/interface';
@@ -8,22 +9,24 @@ import {
    TableHeader,
    TableRow
 } from '@/ui/components/ui/table';
-import { useState } from 'react';
 
 
 interface IClientTableProps {
-   clients: IClient[]
+   clients: IClient[];
+   onSelectedClient: (id: string | string[]) => void;
+   initSelected?: string[]
 }
-export const TableClients = ({ clients }: IClientTableProps) => {
-
-   const [isSelectAll, setisSelectAll] = useState(false)
-
+export const TableClients = ({ clients, onSelectedClient, initSelected }: IClientTableProps) => {
    const onCheckBoxAll = (value: boolean) => {
-      setisSelectAll(value)
+      if (value) {
+         onSelectedClient(clients.map(item => String(item.id)))
+         return
+      }
+      onSelectedClient([]);
    }
 
-   const onCheckBoxItem = (value: IClient) => {
-
+   const isCheckedAll = () => {
+      return clients.every((item) => initSelected?.includes(String(item.id)))
    }
 
    return (
@@ -31,6 +34,7 @@ export const TableClients = ({ clients }: IClientTableProps) => {
          <Table className="max-w-full">
             <TableHeader className="border-b-2 border-tertiary-light-200">
                <TableHeaderItem
+                  initChecked={isCheckedAll()}
                   onCheckBoxAll={onCheckBoxAll}
                />
             </TableHeader>
@@ -41,8 +45,8 @@ export const TableClients = ({ clients }: IClientTableProps) => {
                   <TableRowItem
                      key={item.id}
                      dataItem={item}
-                     checked={isSelectAll}
-                     onCheckBox={onCheckBoxItem}
+                     checked={initSelected?.includes(String(item.id)) ?? false}
+                     onCheckBox={onSelectedClient}
                   />
                ))}
             </TableBody>
@@ -53,10 +57,11 @@ export const TableClients = ({ clients }: IClientTableProps) => {
 
 
 interface TableHeaderItemProps {
-   onCheckBoxAll: (value: boolean) => void
+   onCheckBoxAll: (value: boolean) => void,
+   initChecked?: boolean
 }
 
-const TableHeaderItem = ({ onCheckBoxAll }: TableHeaderItemProps) => {
+const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) => {
    return (
       <TableRow>
          <TableCell
@@ -66,6 +71,7 @@ const TableHeaderItem = ({ onCheckBoxAll }: TableHeaderItemProps) => {
             <div className="inline-block align-middle pl-4">
                <Checkbox
                   onChange={(e) => onCheckBoxAll(e.target.checked)}
+                  checked={initChecked}
                   width='w-5'
                   height='h-5'
                />
@@ -89,22 +95,35 @@ const TableHeaderItem = ({ onCheckBoxAll }: TableHeaderItemProps) => {
 }
 
 interface TableRowItemProps {
-   onCheckBox: (value: IClient) => void;
+   onCheckBox: (value: string) => void;
    checked?: boolean;
    dataItem: IClient;
 }
 
 const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
-   const { avatar, username, email, totalExpenses, firstName, country } = dataItem
+   const { id, avatar, username, email, totalExpenses, firstName, country } = dataItem
+
+   const [isCheck, setIsCheck] = useState(checked)
+
+   useEffect(() => {
+      if (checked === isCheck) return;
+      setIsCheck(checked)
+   }, [checked])
+
+   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsCheck(e.target.checked)
+      onCheckBox(String(id))
+   }
 
    return (
-      <TableRow className='hover:bg-tertiary-light-200 transition-[background-color]' >
+      <TableRow className='hover:bg-tertiary-light-200 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
          <TableCell className="pl-4">
             <Checkbox
                width="w-5"
                height="h-5"
-               checked={checked}
-               onChange={() => onCheckBox(dataItem)}
+               checked={isCheck}
+               onChange={onChange}
+               className='peer'
             />
          </TableCell>
 

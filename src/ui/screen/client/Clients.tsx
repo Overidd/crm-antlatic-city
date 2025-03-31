@@ -1,19 +1,25 @@
-import { PageBreadCrumb, Pagination } from '@/ui/components/ui/common';
 import { ComponentCard } from '@/ui/components/ui/card';
+import { useClients } from '@/presentation/hook';
+import {
+   PageBreadCrumb,
+   Pagination
+} from '@/ui/components/ui/common';
+
 import {
    TableClients,
    ClientActionFilter,
    ClientSheetFilter
 } from '@/ui/container/client';
-import { useClients } from '@/presentation/hook';
+
 
 export const Clients = () => {
    const {
       clients,
+      selectedClients,
       fetchClientsByPage,
+      setSelectedClient,
       pagination: { pages, currentPage },
    } = useClients()
-
 
    return (
       <>
@@ -21,7 +27,11 @@ export const Clients = () => {
          <ClientActionFilter />
          <ClientSheetFilter />
          <ComponentCard title="Clientes">
-            <TableClients clients={clients} />
+            <TableClients
+               clients={clients}
+               initSelected={selectedClients}
+               onSelectedClient={setSelectedClient}
+            />
             <Pagination
                currentPage={currentPage || 1}
                totalPages={pages}

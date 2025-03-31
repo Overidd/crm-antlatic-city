@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IClient, IClientPagination, IFilter } from '@/domain/interface';
 
+
+const filterStringData = (data: string[], value: string) => {
+   if (data.includes(value)) {
+      return data.filter(item => item !== value);
+   }
+   return [...data, value];
+}
+
 export const clientSlice = createSlice({
    name: 'clients',
    initialState: {
@@ -8,6 +16,7 @@ export const clientSlice = createSlice({
       isLoading: false,
       clients: [] as IClient[],
       pagination: {} as IClientPagination,
+      selectedClients: [] as string[],
       filter: {
          gamePreferences: [],
          minExpenses: 0,
@@ -40,7 +49,7 @@ export const clientSlice = createSlice({
       },
 
       updateGameFilter: (state, { payload }) => {
-         state.filter.gamePreferences = payload;
+         state.filter.gamePreferences = filterStringData(state.filter.gamePreferences, payload);
       },
 
       updateExpenseFilter: (state, { payload: { min, max } }) => {
@@ -49,6 +58,10 @@ export const clientSlice = createSlice({
       },
 
       updateStatusFilter: (state, { payload }) => {
+         if (state.filter.status === payload) {
+            state.filter.status = ''
+            return
+         }
          state.filter.status = payload;
       },
 
@@ -70,8 +83,21 @@ export const clientSlice = createSlice({
             search: '',
          };
       },
+
+      selectedClient: (state, { payload }) => {
+         if (Array.isArray(payload)) {
+            state.selectedClients = payload
+            return
+         }
+         state.selectedClients = filterStringData(state.selectedClients, payload);
+      },
+
+      clearSelectedClients: (state) => {
+         state.selectedClients = [];
+      },
    },
 });
+
 
 export const {
    setLoading,
@@ -84,4 +110,6 @@ export const {
    updateLocationFilter,
    updateSearchFilter,
    clearFilter,
+   selectedClient,
+   clearSelectedClients,
 } = clientSlice.actions;

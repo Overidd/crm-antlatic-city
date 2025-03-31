@@ -8,6 +8,8 @@ import {
    updateLocationFilter,
    updateSearchFilter,
    clearFilter,
+   selectedClient,
+   clearSelectedClients,
 } from '../store/client';
 
 export const useClients = () => {
@@ -18,29 +20,34 @@ export const useClients = () => {
       dispatch(startGetClientsByPage(page));
    };
 
-   const applyGameFilter = (games: string[]) => {
+   const applyGameFilter = (games: string) => {
       dispatch(updateGameFilter(games));
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    };
 
    const applyExpenseFilter = (min: number, max: number,) => {
       dispatch(updateExpenseFilter({ min, max }));
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    };
 
    const applyStatusFilter = (status: string) => {
       dispatch(updateStatusFilter(status));
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    };
 
    const applyLocationFilter = (location: string) => {
       dispatch(updateLocationFilter(location));
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    };
 
    const applySearchFilter = (search: string) => {
       dispatch(updateSearchFilter(search));
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    }
 
    const applyClearFilter = () => {
@@ -50,7 +57,12 @@ export const useClients = () => {
       })) return;
       dispatch(clearFilter());
       dispatch(startGetClientsByPage(1));
+      dispatch(clearSelectedClients());
    }
+
+   const setSelectedClient = (idClient: string | string[]) => {
+      dispatch(selectedClient(idClient))
+   };
 
    return {
       ...clientsState,
@@ -62,5 +74,6 @@ export const useClients = () => {
       applyLocationFilter,
       applySearchFilter,
       applyClearFilter,
+      setSelectedClient,
    };
 };
