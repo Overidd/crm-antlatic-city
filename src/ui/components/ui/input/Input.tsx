@@ -1,0 +1,69 @@
+import { type TIconsOptions, IconComponent } from '@/ui/asset'
+import { clsx } from '@/ui/util/clsx'
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+   icon?: TIconsOptions
+   messageError?: string
+   error?: boolean
+   success?: boolean
+   variant?: 'outlined' | 'filled' | 'standard'
+}
+
+export const Input = ({
+   icon,
+   messageError,
+   className = '',
+   error = false,
+   success = false,
+   variant = 'standard',
+   ...rest
+}: InputProps) => {
+
+   const wrapperClasses = clsx(
+      'relative transition-colors duration-200 ease-in-out bg-tertiary-light-100', {
+      // Base styles by variant
+      'border-b-2 border-transparent': variant === 'standard',
+      'border-2 border-transparent rounded-lg px-3': variant === 'outlined',
+      'border-b-2 border-transparent bg-primary-light-300/20 px-3': variant === 'filled',
+
+      // Icon padding
+      'pl-7': !!icon && variant === 'standard',
+      'pl-10': !!icon && (variant === 'outlined' || variant === 'filled'),
+
+      // Focus states
+      'has-[:focus]:ring-error-500 has-[:focus]:border-error-500': error,
+      // Success state
+      'has-[:focus]:border-green-500': success,
+
+      // Default state
+      'has-[:focus]:border-secondary-light-200': !error && !success,
+   }, className)
+
+   const inputClasses = clsx(
+      'peer w-full bg-transparent text-secondary-light-200 font-semibold appearance-none placeholder:text-secondary-light-200/70 focus:outline-none',
+      {
+         'h-11': variant === 'standard',
+         'h-12 rounded-lg': variant === 'outlined',
+         'h-12 rounded-lg bg-transparent': variant === 'filled',
+      },
+   )
+
+   const iconClasses = clsx('text-secondary-light-200 w-5 h-5 absolute top-1/2 -translate-y-1/2 dark:text-gray-400', {
+      'left-0': variant === 'standard',
+      'left-3': variant === 'outlined' || variant === 'filled',
+   })
+
+   const Icon = icon ? IconComponent[icon] : null
+
+   return (
+      <fieldset className='space-y-1'>
+         <div className={wrapperClasses}>
+            <input className={inputClasses} aria-invalid={error ? 'true' : 'false'} {...rest} />
+
+            {Icon && <Icon className={iconClasses} />}
+         </div>
+
+         {error && messageError && <p className='mt-1.5 text-xs text-error-500'>{messageError}</p>}
+      </fieldset>
+   )
+}

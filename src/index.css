@@ -9,23 +9,23 @@
    }
 
    .menu-item-active {
-      @apply bg-color-purple-light text-white dark:bg-brand-500/[0.12] dark:text-brand-400;
+      @apply bg-tertiary-light-100 text-secondary-light-200 dark:bg-brand-500/[0.12] dark:text-brand-400;
+   }
+
+   .menu-item-icon-active {
+      @apply text-secondary-light-200
    }
 
    .menu-item-inactive {
-      @apply text-gray-400 hover:bg-gray-100 group-hover:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300;
+      @apply text-primary-light-200 hover:bg-tertiary-light-100 hover:text-secondary-light-200 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300;
    }
 
    .menu-item-icon {
       @apply text-gray-100 group-hover:text-gray-700 dark:text-gray-400;
    }
 
-   .menu-item-icon-active {
-      @apply text-white dark:text-brand-400;
-   }
-
    .menu-item-icon-inactive {
-      @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300;
+      @apply text-gray-500 group-hover:text-secondary-light-200 dark:text-gray-400 dark:group-hover:text-gray-300;
    }
 
    .menu-item-arrow {
@@ -33,7 +33,7 @@
    }
 
    .menu-item-arrow-active {
-      @apply rotate-180 text-brand-500 dark:text-brand-400;
+      /* @apply rotate-180 text-brand-500 dark:text-brand-400; */
    }
 
    .menu-item-arrow-inactive {
@@ -44,25 +44,26 @@
       @apply relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-theme-sm font-medium;
    }
 
+   /** Style Submenu  */
+   .menu-dropdown-item-inactive {
+      @apply text-gray-300 hover:bg-tertiary-light-100 hover:text-secondary-light-200 dark:text-gray-300 dark:hover:bg-white/5;
+   }
+   
    .menu-dropdown-item-active {
       @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
    }
 
-   .menu-dropdown-item-inactive {
-      @apply text-gray-300 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
-   }
-
-   .menu-dropdown-badge {
+   /* .menu-dropdown-badge {
       @apply block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase text-brand-500 dark:text-brand-400;
-   }
+   } */
 
-   .menu-dropdown-badge-active {
+   /* .menu-dropdown-badge-active {
       @apply bg-brand-100 dark:bg-brand-500/20;
    }
 
    .menu-dropdown-badge-inactive {
       @apply bg-brand-50 group-hover:bg-brand-100 dark:bg-brand-500/15 dark:group-hover:bg-brand-500/20;
-   }
+   } */
 }
 
 @layer utilities {
@@ -97,3 +98,7 @@
    }
 }
 
+.apexcharts-xaxis text,
+.apexcharts-yaxis text {
+   fill: white ;
+}

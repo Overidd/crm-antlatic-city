@@ -1,23 +1,24 @@
-import { clsx } from "@/ui/util";
-import React from "react";
+import { clsx } from '@/ui/util';
 
-interface CheckboxProps {
-   label: string;
-   checked?: boolean;
+interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+   label?: string;
    className?: string;
-   id?: string;
-   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-   disabled?: boolean;
-   subLabel?: React.ReactNode,
+   subLabel?: React.ReactNode;
+   width?: string;
+   height?: string;
+   bgCheck?: string;
+   props?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
    label,
-   checked,
    id,
-   onChange,
-   className = "",
+   className = '',
    disabled = false,
+   width = 'w-4',
+   height = 'h-4',
+   bgCheck = 'bg-tertiary-light-300',
+   ...props
 }) => {
 
    const inputClasses = clsx(
@@ -27,19 +28,17 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
    return (
       <label
-         className={`flex items-center cursor-pointer ${disabled ? "cursor-not-allowed opacity-60" : ""}`}
+         className={`flex items-center cursor-pointer w-fit ${disabled ? "cursor-not-allowed opacity-60" : ""}`}
       >
          <input
             id={id}
             type="checkbox"
             className={inputClasses}
-            checked={checked}
-            onChange={onChange}
-            disabled={disabled}
+            {...props}
          />
 
          {/* Checkbox visual */}
-         <div className="w-4 h-4 mr-2 rounded-md bg-tertiary-light-300 peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90%">
+         <div className={`${width} ${height} mr-2 rounded-md peer-checked:bg-[url('/svg/check.png')] bg-center bg-no-repeat bg-90% ${bgCheck}`}>
          </div>
 
          {label && (

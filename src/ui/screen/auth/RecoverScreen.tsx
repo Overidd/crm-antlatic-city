@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
-import { Button, Input } from "@/ui/components/ui"
-import { Container } from "@/ui/common"
+import { Link } from 'react-router-dom';
+import { Container } from '@/ui/components/ui/common';
+import { Button, Input } from '@/ui/components/ui';
 
 export const RecoverScreen = () => {
    return (

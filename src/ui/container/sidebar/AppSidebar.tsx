@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
-import { User, ChevronDown } from "lucide-react";
+import { ChevronDown, LayoutDashboard, Users, CircleUser, Rows3Icon, Book, Ellipsis } from "lucide-react";
 
 import { useSidebar } from "@/ui/context";
 
@@ -13,42 +13,42 @@ type NavItem = {
 
 const navItems: NavItem[] = [
    {
-      icon: <User />,
-      name: "Dashboard",
-      subItems: [
-         { name: "Panel del clientes", path: "/", pro: false },
-         { name: "Perfil de Cliente", path: "/vendedor", pro: false },
-         { name: "Reportes y Análisis", path: "/productos", pro: false },
-      ],
+      icon: <LayoutDashboard className="text-inherit" />,
+      name: "dashboard",
+      path: "/",
    },
 
    {
-      name: "Promociones",
-      icon: <User />,
-      subItems: [{ name: "Crear Promoción", path: "/form-elements", pro: false }],
+      name: "clientes",
+      icon: <Users className="text-inherit" />,
+      path: "/clients",
    },
    {
-      name: "Tables",
-      icon: <User />,
-      subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-   },
-   // {
-   //    name: "Pages",
-   //    icon: <User />,
-   //    subItems: [
-   //       { name: "404 Error", path: "/404", pro: false },
-   //       { name: "Blank Page", path: "/blank", pro: false },
-   //    ],
-   // },
-   {
-      icon: <User />,
-      name: "View 1",
-      path: "/home",
+      name: "Perfil del Cliente",
+      icon: <CircleUser />,
+      path: "/client-profile",
    },
    {
-      icon: <User />,
-      name: "View 2",
-      path: "/home",
+      icon: <Rows3Icon />,
+      name: "Administración de promociones",
+      subItems: [
+
+         {
+            name: "Generar promociones",
+            path: "/promotion",
+            // icon: <RowsIcon />,
+         },
+         {
+            name: "Calendario",
+            path: "/calendar",
+            // icon: <RowsIcon />,
+         }
+      ],
+   },
+   {
+      icon: <Book />,
+      name: "Soporte",
+      path: "/support",
    },
 ];
 
@@ -83,7 +83,7 @@ const navItems: NavItem[] = [
 //    },
 // ];
 
-const AppSidebar: React.FC = () => {
+export const AppSidebar: React.FC = () => {
    const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
    const location = useLocation();
 
@@ -174,13 +174,13 @@ const AppSidebar: React.FC = () => {
                         {nav.icon}
                      </span>
                      {(isExpanded || isHovered || isMobileOpen) && (
-                        <span className="menu-item-text">{nav.name}</span>
+                        <span className="menu-item-text text-left">{nav.name}</span>
                      )}
                      {(isExpanded || isHovered || isMobileOpen) && (
                         <ChevronDown
                            className={`ml-auto w-5 h- transition-transform duration-200 ${openSubmenu?.type === menuType &&
                               openSubmenu?.index === index
-                              ? "rotate-180 text-brand-500"
+                              ? "rotate-180 text-secondary-light-100"
                               : ""
                               }`}
                         />
@@ -190,7 +190,7 @@ const AppSidebar: React.FC = () => {
                   nav.path && (
                      <Link
                         to={nav.path}
-                        className={`menu-item group ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
+                        className={`menu-item group transition-all  ${isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
                            }`}
                      >
                         <span
@@ -225,13 +225,13 @@ const AppSidebar: React.FC = () => {
                            <li key={subItem.name}>
                               <Link
                                  to={subItem.path}
-                                 className={`menu-dropdown-item ${isActive(subItem.path)
+                                 className={`menu-dropdown-item transition-all ${isActive(subItem.path)
                                     ? "menu-dropdown-item-active"
                                     : "menu-dropdown-item-inactive"
                                     }`}
                               >
                                  {subItem.name}
-                                 <span className="flex items-center gap-1 ml-auto">
+                                 {/* <span className="flex items-center gap-1 ml-auto">
                                     {subItem.new && (
                                        <span
                                           className={`ml-auto ${isActive(subItem.path)
@@ -252,7 +252,7 @@ const AppSidebar: React.FC = () => {
                                           pro
                                        </span>
                                     )}
-                                 </span>
+                                 </span> */}
                               </Link>
                            </li>
                         ))}
@@ -266,7 +266,7 @@ const AppSidebar: React.FC = () => {
 
    return (
       <aside
-         className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-transparent text-white dark:bg-gray-900 dark:border-gray-800 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+         className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-tertiary-light-400 dark:bg-gray-900 dark:border-gray-800 h-screen transition-all duration-300 ease-in-out z-50 
         ${isExpanded || isMobileOpen
                ? "w-[290px]"
                : isHovered
@@ -287,22 +287,23 @@ const AppSidebar: React.FC = () => {
                   <>
                      <img
                         className="dark:hidden"
-                        src="/images/logo/logo.svg"
+                        src="/logo/TextLogo2.png"
                         alt="Logo"
-                        width={150}
+                        width={240}
                         height={40}
                      />
                      <img
                         className="hidden dark:block"
                         src="/images/logo/logo-dark.svg"
-                        alt="Logo"
+                        alt="Logo 1"
                         width={150}
                         height={40}
                      />
                   </>
                ) : (
                   <img
-                     src="/images/logo/logo-icon.svg"
+                     className="object-contain"
+                     src="/logo/logoSmall.png"
                      alt="Logo"
                      width={32}
                      height={32}
@@ -323,7 +324,7 @@ const AppSidebar: React.FC = () => {
                         {isExpanded || isHovered || isMobileOpen ? (
                            "Menu"
                         ) : (
-                           <User />
+                           <Ellipsis />
                         )}
                      </h2>
                      {renderMenuItems(navItems, "main")}
@@ -336,11 +337,11 @@ const AppSidebar: React.FC = () => {
                            : "justify-start"
                            }`}
                      >
-                        {isExpanded || isHovered || isMobileOpen ? (
+                        {/* {isExpanded || isHovered || isMobileOpen ? (
                            "Others"
                         ) : (
                            <User />
-                        )}
+                        )} */}
                      </h2>
                      {/* {renderMenuItems(othersItems, "others")} */}
                   </div>
