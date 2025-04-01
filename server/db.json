@@ -15,6 +15,8 @@
             "Poker",
             "Roulette"
          ],
+         "gender": "masculino",
+         "age": "21/05/1990",
          "totalExpenses": 13000,
          "totalWithdrawals": 7000,
          "totalDeposits": 15000,
@@ -37,6 +39,8 @@
             "Roulette",
             "Gates of Olympus"
          ],
+         "gender": "femenino",
+         "age": "50/05/2000",
          "country": "Perú",
          "firstName": "Valeria",
          "lastName": "Castro",
@@ -69,7 +73,9 @@
          "GamePreferences": [
             "Roulette",
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "masculino",
+         "age": "20/09/1990"
       },
       {
          "id": 4,
@@ -92,7 +98,9 @@
          "GamePreferences": [
             "Poker",
             "Roulette"
-         ]
+         ],
+         "gender": "femenino",
+         "age": "10/08/1993"
       },
       {
          "id": 5,
@@ -114,7 +122,9 @@
          "pendingPayment": 300,
          "GamePreferences": [
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "masculino",
+         "age": "05/11/1992"
       },
       {
          "id": 6,
@@ -137,7 +147,9 @@
          "GamePreferences": [
             "Black Jack",
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "masculino",
+         "age": "02/05/1996"
       },
       {
          "id": 7,
@@ -160,7 +172,9 @@
          "GamePreferences": [
             "Poker",
             "Roulette"
-         ]
+         ],
+         "gender": "femenino",
+         "age": "30/05/2000"
       },
       {
          "id": 8,
@@ -183,7 +197,9 @@
          "GamePreferences": [
             "Black Jack",
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "masculino",
+         "age": "25/12/1989"
       },
       {
          "id": 9,
@@ -205,7 +221,9 @@
          "pendingPayment": 0,
          "GamePreferences": [
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "femenino",
+         "age": "10/05/1998"
       },
       {
          "id": 10,
@@ -230,7 +248,9 @@
             "Poker",
             "Roulette",
             "Gates of Olympus"
-         ]
+         ],
+         "gender": "masculino",
+         "age": "16/07/1986"
       }
    ]
 }

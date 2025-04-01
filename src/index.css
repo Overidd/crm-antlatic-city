@@ -50,7 +50,7 @@
    }
    
    .menu-dropdown-item-active {
-      @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+      @apply bg-tertiary-light-100 text-secondary-light-200 dark:bg-brand-500/[0.12] dark:text-brand-400;
    }
 
    /* .menu-dropdown-badge {

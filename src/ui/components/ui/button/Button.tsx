@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
   const variantClasses = {
     base: 'inline-flex items-center justify-center gap-2 rounded-lg transition-colors py-3 px-4 w-full font-medium',
     primary: 'bg-secondary-light-300 label-white shadow-theme-xs hover:bg-secondary-light-200/80 disabled:bg-brand-300',
-    outline: 'bg-transparent font-semibold hover:opacity-90',
+    outline: 'font-semibold hover:opacity-90',
     error: 'bg-error-400/80 label-white shadow-theme-xs hover:bg-error-400/90'
   };
 

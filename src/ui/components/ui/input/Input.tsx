@@ -22,7 +22,7 @@ export const Input = ({
    const wrapperClasses = clsx(
       'relative transition-colors duration-200 ease-in-out bg-tertiary-light-100', {
       // Base styles by variant
-      'border-b-2 border-transparent': variant === 'standard',
+      'border-b-2 border-secondary-light-300': variant === 'standard',
       'border-2 border-transparent rounded-lg px-3': variant === 'outlined',
       'border-b-2 border-transparent bg-primary-light-300/20 px-3': variant === 'filled',
 

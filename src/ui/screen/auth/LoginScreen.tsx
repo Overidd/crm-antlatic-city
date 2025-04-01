@@ -8,11 +8,13 @@ export const LoginScreen = () => {
          <Input
             type="email"
             placeholder="Email"
+            variant='standard'
             icon="email"
          />
          <Input
             type="password"
             placeholder="password"
+            variant='standard'
             icon="user"
          />
          <Container>
@@ -28,7 +30,7 @@ export const LoginScreen = () => {
          </Container>
          <Button
             label="Login"
-            variant="outline"
+            variant="primary"
          />
       </form >
    )

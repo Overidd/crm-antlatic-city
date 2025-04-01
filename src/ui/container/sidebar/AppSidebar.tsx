@@ -26,7 +26,7 @@ const navItems: NavItem[] = [
    {
       name: "Perfil del Cliente",
       icon: <CircleUser />,
-      path: "/client-profile",
+      path: "/client-profile/*",
    },
    {
       icon: <Rows3Icon />,

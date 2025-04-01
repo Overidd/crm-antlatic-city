@@ -1,7 +1,8 @@
 
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "../layout/app";
-import { Clients } from "../screen/client";
+import { Clients } from "../screen/clients";
+import { ClientProfile } from "../screen/clientProfile";
 import {
    Dashboard,
    Promotions
@@ -20,6 +21,10 @@ export const PrivateRoute = () => (
          <Route
             path='/clients'
             element={<Clients />}
+         />
+         <Route
+            path='/client-profile/:id'
+            element={<ClientProfile />}
          />
          <Route
             path='/promotion'

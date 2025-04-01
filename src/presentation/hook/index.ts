@@ -1,2 +1,3 @@
 export * from './useCheckAuth';
-export * from './useclients';
+export * from './useClients';
+export * from './useClientProfile';

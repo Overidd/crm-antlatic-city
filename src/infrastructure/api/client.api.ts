@@ -1,6 +1,7 @@
 import {
    IClient,
    IClientAll,
+   IClientProfile,
    IFilter,
    IGetAll
 } from '@/domain/interface';
@@ -97,5 +98,15 @@ export class ClientApi {
          prev,
          items,
       };
+   };
+
+   public getById = async (id: string): Promise<IClientProfile> => {
+      const res = await fetch(`${import.meta.env.VITE_URL_API}/clients/${id}`, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+      return await res.json();
    };
 }

@@ -26,4 +26,18 @@ export class ClientService {
       }
    }
 
+   public getById = async (id: string) => {
+      try {
+         const client = await this.clientApi.getById(id);
+         return {
+            ok: true,
+            client,
+         }
+      } catch (error) {
+         return {
+            ok: false,
+            messageError: error?.toString()
+         }
+      }
+   }
 }

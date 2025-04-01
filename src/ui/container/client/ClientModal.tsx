@@ -13,7 +13,7 @@ export const ModalAddPromotion = ({ currentData }: ClientModalProps) => {
          idModal='add-client-modal'
          className='text-center space-y-4'
       >
-         <figure className='mx-auto w-[25rem]'>
+         <figure className='mx-auto md:w-[25rem]'>
             <img src="./svg/addClientPromotion.svg" alt="image ilustration" />
          </figure>
          <p className='text-primary-light-200 font-semibold text-lg'>
@@ -34,7 +34,7 @@ export const ModalDeleteClient = ({ currentData }: ClientModalProps) => {
          idModal='delete-client-modal'
          className='text-center space-y-4'
       >
-         <figure className='mx-auto w-[25rem]'>
+         <figure className='mx-auto w-[15rem]'>
             <img src="./svg/deleteInllustration.svg" alt="image ilustration" />
          </figure>
          <p className='text-primary-light-200 font-semibold text-lg'>

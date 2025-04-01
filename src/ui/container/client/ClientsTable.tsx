@@ -26,11 +26,15 @@ export const TableClients = ({ clients, onSelectedClient, initSelected }: IClien
    }
 
    const isCheckedAll = () => {
-      return clients.every((item) => initSelected?.includes(String(item.id)))
+      return clients.length > 0 && clients.every((item) => initSelected?.includes(String(item.id)))
+   }
+
+   const isExitClients = () => {
+      return clients.length > 0
    }
 
    return (
-      <div className="bg-transparent overflow-y-auto" >
+      <div className="bg-transparent overflow-y-auto min-h-[26rem]" >
          <Table className="max-w-full">
             <TableHeader className="border-b-2 border-tertiary-light-200">
                <TableHeaderItem
@@ -41,14 +45,29 @@ export const TableClients = ({ clients, onSelectedClient, initSelected }: IClien
             <TableBody
                className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]"
             >
-               {clients.map((item) => (
-                  <TableRowItem
-                     key={item.id}
-                     dataItem={item}
-                     checked={initSelected?.includes(String(item.id)) ?? false}
-                     onCheckBox={onSelectedClient}
-                  />
-               ))}
+               {
+                  isExitClients()
+                     ? clients.map((item) => (
+                        <TableRowItem
+                           key={item.id}
+                           dataItem={item}
+                           checked={initSelected?.includes(String(item.id)) ?? false}
+                           onCheckBox={onSelectedClient}
+                        />
+                     ))
+                     : <TableRow className='w-full h-[20rem] relative'>
+                        <TableCell>
+                           <figure className="w-[20rem] text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                              <img
+                                 className='w-full'
+                                 src="./svg/peopleSearch.svg"
+                                 alt="people no found svg"
+                              />
+                              <figcaption className='text-secondary-light-200'>No se encontraron clientes</figcaption>
+                           </figure>
+                        </TableCell>
+                     </TableRow>
+               }
             </TableBody>
          </Table>
       </div >
@@ -158,7 +177,9 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
          </TableCell>
 
          <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
-            <ClientPopverDetail />
+            <ClientPopverDetail
+               idClient={String(id)}
+            />
          </TableCell>
       </TableRow>
    )
