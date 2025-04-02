@@ -28,4 +28,19 @@ export class AuthService {
       await this.authRepository.logout();
    }
 
+   async checkStatus() {
+      try {
+         const res = await this.authRepository.checkStatus();
+         return {
+            ok: true,
+            user: res
+         }
+      } catch (error) {
+         return {
+            ok: false,
+            messageError: error || 'Error al iniciar sesión'
+         }
+      }
+   }
+
 }

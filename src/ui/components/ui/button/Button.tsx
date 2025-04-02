@@ -11,6 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   title?: string;
+  type?: 'button' | 'submit'
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -19,9 +20,10 @@ export const Button: React.FC<ButtonProps> = ({
   startIcon,
   endIcon,
   onClick,
+  title,
   className = '',
   disabled = false,
-  title
+  type = 'button',
 }) => {
   // Size Classes
 
@@ -47,6 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       title={title}
+      type={type}
     >
       {startIcon && <span className='flex items-center'>{startIcon}</span>}
       {label}

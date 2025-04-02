@@ -4,14 +4,14 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-   apiKey: "AIzaSyAlTRbtfSwXXvk4IIW36KjXLLQKBs_jGdk",
-   authDomain: "crm-auth-test.firebaseapp.com",
-   projectId: "crm-auth-test",
-   storageBucket: "crm-auth-test.firebasestorage.app",
-   messagingSenderId: "728154221084",
-   appId: "1:728154221084:web:5b333d0c404d84e4c28dd9"
- };
- 
+  apiKey: import.meta.env.VITE_URL_API_KEY_FAREBASE,
+  authDomain: "crm-auth-test.firebaseapp.com",
+  projectId: "crm-auth-test",
+  storageBucket: "crm-auth-test.firebasestorage.app",
+  messagingSenderId: "728154221084",
+  appId: "1:728154221084:web:5b333d0c404d84e4c28dd9"
+};
+
 //* La función initializeApp de Firebase se usa para inicializar la conexión de tu aplicación con los servicios de Firebase.
 const FirebaseApp = initializeApp(firebaseConfig);
 /**

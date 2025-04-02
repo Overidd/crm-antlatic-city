@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import { authStateEmun } from '.';
+import { authStateEmun } from './emun.auth';
 
 export const authSlice = createSlice({
    name: 'auth',

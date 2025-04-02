@@ -3,7 +3,7 @@ import { clsx } from '@/ui/util/clsx'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
    icon?: TIconsOptions;
-   messageError?: string;
+   messageError?: string | null ;
    error?: boolean;
    success?: boolean;
    variant?: 'outlined' | 'filled' | 'standard';
@@ -33,7 +33,7 @@ export const Input = ({
       'pl-10': !!icon && (variant === 'outlined' || variant === 'filled'),
 
       // Focus states
-      'has-[:focus]:ring-error-500 has-[:focus]:border-error-500': error,
+      'has-[:focus]:ring-error-500 has-[:focus]:border-error-500 border-red-500': error,
       // Success state
       'has-[:focus]:border-green-500': success,
 

@@ -33,10 +33,8 @@ export const PrivateRoute = () => (
             path='/calendar'
             element={<Calendar />}
          />
-         <Route
-            path="/*"
-            element={<Navigate to="/auth/login" replace />}
-         />
+         <Route path="/*" element={<Navigate to="/" />} />
+
       </Route>
    </Routes>
 )

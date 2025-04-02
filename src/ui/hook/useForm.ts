@@ -7,20 +7,20 @@ export type FormState = Record<string, string>;
 interface useFormProps {
    initialState?: FormState,
    activeValidation?: boolean,
-   validations?: { [string: string]: [(value: string) => boolean, string] }
+   validations?: FieldValidationType
 }
 // Hook useForm tipado
 export const useForm = ({
    initialState = {},
    activeValidation = false,
-   validations = {}
+   validations = fieldValidation,
 }: useFormProps) => {
 
    const [formState, setFormState] = useState<FormState>(initialState);
    const [formValidation, setFormValidation] = useState<Record<string, string | null>>({});
 
    const formValidationRef = useRef<FieldValidationType>({
-      ...fieldValidation,
+      // ...fieldValidation,
       ...validations,
    });
 
@@ -73,24 +73,22 @@ export const useForm = ({
    };
 
    // Manejar envío del formulario
-   const onSubmitForm = useMemo(
-      () =>
-         (callback: (event: FormEvent<HTMLFormElement>) => void) => {
-            if (typeof callback !== 'function') {
-               throw new Error('callback is not a function');
+   const onSubmitForm = useMemo(() =>
+      (callback: (event: FormEvent<HTMLFormElement>) => void) => {
+         if (typeof callback !== 'function') {
+            throw new Error('callback is not a function');
+         }
+
+         return (event: FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            let isFormValid = true;
+            if (activeValidation) {
+               isFormValid = validateForm();
             }
-
-            return (event: FormEvent<HTMLFormElement>) => {
-               event.preventDefault();
-               let isFormValid = true;
-               if (activeValidation) {
-                  isFormValid = validateForm();
-               }
-               if (!isFormValid) return;
-
-               callback(event);
-            };
-         },
+            if (!isFormValid) return;
+            callback(event);
+         };
+      },
       [formState, formValidation]
    );
 

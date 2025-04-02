@@ -20,10 +20,24 @@ export const startLoginWithEmailPassword = (dataLoginUser: { email: string, pass
    }
 }
 
+
+export const startCheckingAuth = (callback?: () => void) => {
+   return async (dispatch: AppDispatch) => {
+      // dispatch(checkingCredentials());
+      const { ok, messageError, user } = await authService.checkStatus();
+
+      if (!ok) {
+         dispatch(logout(messageError));
+         return
+      }
+      dispatch(login(user));
+      if (callback) callback();
+   }
+}
+
 export const startLogout = () => {
    return async (dispatch: AppDispatch) => {
       await authService.logout();
-      dispatch({ type: 'auth/logout', payload: {} })
-      dispatch({ type: 'journal/clearNotesLogout' })
+      dispatch(logout(''));
    }
 }

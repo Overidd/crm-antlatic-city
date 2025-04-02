@@ -9,4 +9,6 @@ export abstract class AuthRepository {
    abstract loginWithEmailPassord({ email, password }: ILoginWithEmailPassord): Promise<ILogin>;
 
    abstract logout(): Promise<void>;
+
+   abstract checkStatus(): Promise<ILogin>;
 }
