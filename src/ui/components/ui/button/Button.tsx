@@ -7,11 +7,12 @@ interface ButtonProps {
   variant?: 'primary' | 'outline' | 'error';
   startIcon?: ReactNode;
   endIcon?: ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
   className?: string;
   title?: string;
   type?: 'button' | 'submit'
+  name?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
   endIcon,
   onClick,
   title,
+  name,
   className = '',
   disabled = false,
   type = 'button',
@@ -50,6 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       title={title}
       type={type}
+      name={name}
     >
       {startIcon && <span className='flex items-center'>{startIcon}</span>}
       {label}

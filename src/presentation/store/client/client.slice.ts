@@ -95,6 +95,11 @@ export const clientSlice = createSlice({
       clearSelectedClients: (state) => {
          state.selectedClients = [];
       },
+
+      deleteClientSuccess: (state, { payload }) => {
+         state.clients = state.clients.filter(client => client.id !== payload);
+         state.isLoading = false;
+      },
    },
 });
 
@@ -112,4 +117,5 @@ export const {
    clearFilter,
    selectedClient,
    clearSelectedClients,
+   deleteClientSuccess,
 } = clientSlice.actions;

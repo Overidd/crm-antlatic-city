@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Checkbox } from '@/ui/components/ui';
 import { ClientPopverDetail } from './ClientPopverDetail';
 import { IClient } from '@/domain/interface';
+import { useClients } from '@/presentation/hook';
 import {
    Table,
    TableBody,
@@ -10,23 +11,27 @@ import {
    TableRow
 } from '@/ui/components/ui/table';
 
-interface IClientTableProps {
-   clients: IClient[];
-   onSelectedClient: (id: string | string[]) => void;
-   initSelected?: string[];
-   isLoading?: boolean;
-}
-export const TableClients = ({ clients, onSelectedClient, initSelected, isLoading }: IClientTableProps) => {
+export const TableClients = () => {
+
+   const {
+      clients,
+      setSelectedClient,
+      selectedClients,
+      deleteClientById,
+      isLoading,
+   } = useClients()
+
    const onCheckBoxAll = (value: boolean) => {
       if (value) {
-         onSelectedClient(clients.map(item => String(item.id)))
+         setSelectedClient(clients.map(item => String(item.id)))
          return
       }
-      onSelectedClient([]);
+      setSelectedClient([]);
    }
 
    const isCheckedAll = () => {
-      return clients.length > 0 && clients.every((item) => initSelected?.includes(String(item.id)))
+      return clients.length > 0
+         && clients.every((item) => selectedClients?.includes(String(item.id)));
    }
 
    const isExitClients = () => {
@@ -58,8 +63,9 @@ export const TableClients = ({ clients, onSelectedClient, initSelected, isLoadin
                            <TableRowItem
                               key={item.id}
                               dataItem={item}
-                              checked={initSelected?.includes(String(item.id)) ?? false}
-                              onCheckBox={onSelectedClient}
+                              checked={selectedClients?.includes(String(item.id)) ?? false}
+                              onCheckBox={setSelectedClient}
+                              deleteClientById={deleteClientById}
                            />
                         ))
                         : <TableRow className='w-full h-[20rem] relative'>
@@ -122,11 +128,12 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
 
 interface TableRowItemProps {
    onCheckBox: (value: string) => void;
+   deleteClientById: (id: string) => void;
    checked?: boolean;
    dataItem: IClient;
 }
 
-const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
+const TableRowItem = ({ dataItem, onCheckBox, checked, deleteClientById }: TableRowItemProps) => {
    const { id, avatar, username, email, totalExpenses, firstName, country } = dataItem
 
    const [isCheck, setIsCheck] = useState(checked)
@@ -186,6 +193,8 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
          <TableCell className="py-3 text-primary-light-200 text-theme-sm">
             <ClientPopverDetail
                idClient={String(id)}
+               username={username}
+               deleteClientById={deleteClientById}
             />
          </TableCell>
       </TableRow>

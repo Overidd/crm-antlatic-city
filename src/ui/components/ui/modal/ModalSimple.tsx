@@ -1,36 +1,36 @@
 import { useEffect, useState } from 'react';
-import { useSheet } from '@/ui/context';
 import { clsx } from '@/ui/util';
 import { X } from 'lucide-react';
 
 interface ModalProps {
-   idModal: string;
+   isOpen: boolean;
+   onClose: () => void;
    children: React.ReactNode;
    className?: string;
    timeAnimation?: number;
 }
 
-export const Modal: React.FC<ModalProps> = ({
-   idModal,
+export const ModalSimple: React.FC<ModalProps> = ({
    children,
    className,
    timeAnimation = 300,
+   onClose,
+   isOpen
 }) => {
-   const { isOpen, closeSheet } = useSheet(idModal);
    const [mounted, setMounted] = useState(false);
 
    useEffect(() => {
       if (isOpen) {
-         setMounted(true);
-      } else {
-         setTimeout(() => setMounted(false), timeAnimation);
-      }
+         setMounted(true)
+         return
+      };
+      const timer = setTimeout(() => setMounted(false), timeAnimation);
+      return () => clearTimeout(timer);
    }, [isOpen, timeAnimation]);
-
 
    useEffect(() => {
       const handleEscape = (event: KeyboardEvent) => {
-         if (event.key === 'Escape') closeSheet(idModal);
+         if (event.key === 'Escape') onClose();
       };
       if (isOpen) document.addEventListener('keydown', handleEscape);
       return () => document.removeEventListener('keydown', handleEscape);
@@ -50,12 +50,12 @@ export const Modal: React.FC<ModalProps> = ({
 
    return (
       <div
-         className={`fixed inset-0 flex items-center justify-center overflow-y-auto modal z-50 transition-opacity duration-300 ${(mounted || isOpen) ? "opacity-100 visible" : "opacity-0 invisible"
+         className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${(mounted || isOpen) ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
       >
          <div
             className="fixed inset-0 h-full w-full bg-tertiary-light-300/50"
-            onClick={() => closeSheet(idModal)}
+            onClick={onClose}
          ></div>
 
          <div
@@ -63,7 +63,7 @@ export const Modal: React.FC<ModalProps> = ({
             onClick={(e) => e.stopPropagation()}
          >
             <button
-               onClick={() => closeSheet(idModal)}
+               onClick={onClose}
                className="text-white font-bold rounded-full p-2 self-end"
             >
                <X />
@@ -73,19 +73,4 @@ export const Modal: React.FC<ModalProps> = ({
       </div>
    );
 };
-
-
-// useEffect(() => {
-//    if (isOpen) {
-//       document.body.style.overflow = 'hidden';
-//    } else {
-//       document.body.style.overflow = 'unset';
-//    }
-
-//    return () => {
-//       document.body.style.overflow = 'unset';
-//    };
-// }, [isOpen]);
-
-// if (!isOpen) return null;
 

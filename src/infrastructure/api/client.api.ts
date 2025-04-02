@@ -114,4 +114,13 @@ export class ClientApi {
          age: client.age ? `${new Date().getFullYear() - new Date(client.age).getFullYear()}` : '',
       }
    };
+
+   public deleteById = async (id: string): Promise<void> => {
+      await fetch(`${import.meta.env.VITE_URL_API}/clients/${id}`, {
+         method: 'DELETE',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+   };
 }

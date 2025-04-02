@@ -13,15 +13,13 @@ import {
    ModalAddPromotion,
    ModalDeleteClient,
 } from '@/ui/container/client';
+import { ToastContainer } from 'react-toastify';
 
 export const Clients = () => {
    const {
-      clients,
       fetchClientsByPage,
       selectedClients,
-      setSelectedClient,
       hasSelectedClient,
-      isLoading,
       pagination: { pages, currentPage },
    } = useClients()
 
@@ -35,10 +33,6 @@ export const Clients = () => {
             className='flex flex-col justify-between'
          >
             <TableClients
-               clients={clients}
-               initSelected={selectedClients}
-               onSelectedClient={setSelectedClient}
-               isLoading={isLoading}
             />
             <Pagination
                currentPage={currentPage || 1}
@@ -58,6 +52,7 @@ export const Clients = () => {
          <ModalDeleteClient
             currentData={selectedClients}
          />
+         <ToastContainer />
       </>
    );
 }

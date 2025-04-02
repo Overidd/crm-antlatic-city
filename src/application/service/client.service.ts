@@ -40,4 +40,18 @@ export class ClientService {
          }
       }
    }
+   public deleteById = async (id: string) => {
+      try {
+         const client = await this.clientApi.deleteById(id);
+         return {
+            ok: true,
+            client,
+         }
+      } catch (error) {
+         return {
+            ok: false,
+            messageError: error?.toString()
+         }
+      }
+   }
 }
