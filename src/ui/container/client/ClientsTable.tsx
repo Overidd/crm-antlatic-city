@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Checkbox } from '@/ui/components/ui';
 import { ClientPopverDetail } from './ClientPopverDetail';
 import { IClient } from '@/domain/interface';
+import { useClients } from '@/presentation/hook';
 import {
    Table,
    TableBody,
@@ -10,45 +11,76 @@ import {
    TableRow
 } from '@/ui/components/ui/table';
 
+export const TableClients = () => {
 
-interface IClientTableProps {
-   clients: IClient[];
-   onSelectedClient: (id: string | string[]) => void;
-   initSelected?: string[]
-}
-export const TableClients = ({ clients, onSelectedClient, initSelected }: IClientTableProps) => {
+   const {
+      clients,
+      setSelectedClient,
+      selectedClients,
+      deleteClientById,
+      isLoading,
+   } = useClients()
+
    const onCheckBoxAll = (value: boolean) => {
       if (value) {
-         onSelectedClient(clients.map(item => String(item.id)))
+         setSelectedClient(clients.map(item => String(item.id)))
          return
       }
-      onSelectedClient([]);
+      setSelectedClient([]);
    }
 
    const isCheckedAll = () => {
-      return clients.every((item) => initSelected?.includes(String(item.id)))
+      return clients.length > 0
+         && clients.every((item) => selectedClients?.includes(String(item.id)));
+   }
+
+   const isExitClients = () => {
+      return clients.length > 0
    }
 
    return (
-      <div className="bg-transparent overflow-y-auto" >
-         <Table className="max-w-full">
-            <TableHeader className="border-b-2 border-tertiary-light-200">
+      <div className="bg-transparent overflow-y-hidden overflow-x-auto" >
+         <Table
+            cellPadding='10'
+            className="max-w-full"
+         >
+            <TableHeader className="border-b-2 border-tertiary-light-100">
                <TableHeaderItem
                   initChecked={isCheckedAll()}
                   onCheckBoxAll={onCheckBoxAll}
                />
             </TableHeader>
             <TableBody
-               className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]"
+               className="divide-y-2 divide-tertiary-light-100 dark:divide-white/[0.05]"
             >
-               {clients.map((item) => (
-                  <TableRowItem
-                     key={item.id}
-                     dataItem={item}
-                     checked={initSelected?.includes(String(item.id)) ?? false}
-                     onCheckBox={onSelectedClient}
-                  />
-               ))}
+               {
+                  isLoading
+                     ? [...Array(7)].map((_, index) => (
+                        <TableRowItemSkeleton key={index} />
+                     ))
+                     : isExitClients()
+                        ? clients.map((item) => (
+                           <TableRowItem
+                              key={item.id}
+                              dataItem={item}
+                              checked={selectedClients?.includes(String(item.id)) ?? false}
+                              onCheckBox={setSelectedClient}
+                              deleteClientById={deleteClientById}
+                           />
+                        ))
+                        : <TableRow className='w-full h-[20rem] relative'>
+                           <TableCell>
+                              <figure className="w-[20rem] text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                 <img
+                                    className='w-full'
+                                    src="./svg/peopleSearch.svg"
+                                    alt="people no found svg"
+                                 />
+                                 <figcaption className='text-secondary-light-200'>No se encontraron clientes</figcaption>
+                              </figure>
+                           </TableCell>
+                        </TableRow>
+               }
             </TableBody>
          </Table>
       </div >
@@ -68,7 +100,7 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
             isHeader
             className={`py-3 font-medium uppercase text-start text-theme-xs`}
          >
-            <div className="inline-block align-middle pl-4">
+            <div className="inline-block align-middle">
                <Checkbox
                   onChange={(e) => onCheckBoxAll(e.target.checked)}
                   checked={initChecked}
@@ -82,7 +114,7 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
                <TableCell
                   key={value}
                   isHeader
-                  className={`px-5 py-3 font-medium uppercase text-start text-theme-xs`}
+                  className={`py-3 font-medium uppercase text-start text-theme-xs`}
                >
                   <span className="inline-block align-middle text-secondary-light-200 font-bold">
                      {value}
@@ -96,11 +128,12 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
 
 interface TableRowItemProps {
    onCheckBox: (value: string) => void;
+   deleteClientById: (id: string) => void;
    checked?: boolean;
    dataItem: IClient;
 }
 
-const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
+const TableRowItem = ({ dataItem, onCheckBox, checked, deleteClientById }: TableRowItemProps) => {
    const { id, avatar, username, email, totalExpenses, firstName, country } = dataItem
 
    const [isCheck, setIsCheck] = useState(checked)
@@ -116,8 +149,8 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
    }
 
    return (
-      <TableRow className='hover:bg-tertiary-light-200 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
-         <TableCell className="pl-4">
+      <TableRow className='hover:bg-tertiary-light-100 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
+         <TableCell className="py-3">
             <Checkbox
                width="w-5"
                height="h-5"
@@ -127,7 +160,7 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
             />
          </TableCell>
 
-         <TableCell className="px-5 py-4 sm:px-6 text-start">
+         <TableCell className="py-3 text-start">
             <div className="flex items-center gap-3">
                <figure className="w-10 h-10 overflow-hidden rounded-full">
                   <img
@@ -141,25 +174,44 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
             </div>
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {username}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {email}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {country}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-theme-sm">
             S/ {totalExpenses}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
-            <ClientPopverDetail />
+         <TableCell className="py-3 text-primary-light-200 text-theme-sm">
+            <ClientPopverDetail
+               idClient={String(id)}
+               username={username}
+               deleteClientById={deleteClientById}
+            />
          </TableCell>
+      </TableRow>
+   )
+}
+
+const TableRowItemSkeleton = () => {
+
+   return (
+      <TableRow >
+         {
+            Array.from({ length: 7 }).map((_, index) => (
+               <TableCell className="py-3" key={index}>
+                  <div className="h-10 animate-pulse space-y-2 overflow-hidden bg-tertiary-light-100"></div>
+               </TableCell>
+            ))
+         }
       </TableRow>
    )
 }

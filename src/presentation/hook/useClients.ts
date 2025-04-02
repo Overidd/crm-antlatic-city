@@ -10,6 +10,7 @@ import {
    clearFilter,
    selectedClient,
    clearSelectedClients,
+   startDeleteClientById,
 } from '../store/client';
 
 export const useClients = () => {
@@ -64,6 +65,12 @@ export const useClients = () => {
       dispatch(selectedClient(idClient))
    };
 
+   const deleteClientById = (idClient: string) => {
+      dispatch(startDeleteClientById(idClient))
+   };
+
+   const hasSelectedClient = () => clientsState.selectedClients.length > 0;
+
    return {
       ...clientsState,
       dispatch,
@@ -75,5 +82,7 @@ export const useClients = () => {
       applySearchFilter,
       applyClearFilter,
       setSelectedClient,
+      hasSelectedClient,
+      deleteClientById,
    };
 };

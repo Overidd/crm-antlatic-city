@@ -9,10 +9,10 @@ import {
    useSidebar,
    SheetProvider
 } from '@/ui/context';
-import { useCheckAuth } from '@/presentation/hook';
+import { useAuthCheck } from '@/presentation/hook';
 
 const Layout = () => {
-   useCheckAuth();
+   useAuthCheck();
 
    const {
       isExpanded,

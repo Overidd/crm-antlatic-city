@@ -1,15 +1,18 @@
+import { ReactNode } from 'react';
 import { clsx } from '@/ui/util';
-import React, { ReactNode } from 'react';
 
 interface ButtonProps {
-  label: ReactNode; // Button label or content
-  size?: 'sm' | 'md'; // Button size
-  variant?: 'primary' | 'outline'; // Button variant
-  startIcon?: ReactNode; // Icon before the label
-  endIcon?: ReactNode; // Icon after the label
-  onClick?: () => void; // Click handler
-  disabled?: boolean; // Disabled state
-  className?: string; // Disabled state
+  label: ReactNode;
+  size?: 'sm' | 'md';
+  variant?: 'primary' | 'outline' | 'error';
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  onClick?: (e: React.MouseEvent) => void;
+  disabled?: boolean;
+  className?: string;
+  title?: string;
+  type?: 'button' | 'submit'
+  name?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,16 +21,20 @@ export const Button: React.FC<ButtonProps> = ({
   startIcon,
   endIcon,
   onClick,
+  title,
+  name,
   className = '',
   disabled = false,
+  type = 'button',
 }) => {
   // Size Classes
 
   // Variant Classes
   const variantClasses = {
-    base: 'inline-flex items-center justify-center gap-2 rounded-lg transition-colors py-3 px-4 w-full',
-    primary: 'bg-tertiary-light-300 label-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300',
-    outline: 'bg-transparent font-semibold hover:opacity-90',
+    base: 'inline-flex items-center justify-center gap-2 rounded-lg transition-colors py-3 px-4 w-full font-medium block',
+    primary: 'bg-secondary-light-300 label-white hover:bg-secondary-light-200/80 disabled:bg-brand-300',
+    outline: 'font-semibold hover:opacity-90',
+    error: 'bg-error-400/80 label-white hover:bg-error-400/90'
   };
 
   const wrapperClasses = clsx(
@@ -43,6 +50,9 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${wrapperClasses} ${className}`}
       onClick={onClick}
       disabled={disabled}
+      title={title}
+      type={type}
+      name={name}
     >
       {startIcon && <span className='flex items-center'>{startIcon}</span>}
       {label}

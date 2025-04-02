@@ -22,7 +22,6 @@ export const Popover = ({ icon, text, className, children }: PopoverProps) => {
 
       const { offsetTop, offsetHeight } = popoverElement.current;
       const windowHeight = window.innerHeight;
-      console.log(offsetTop + offsetHeight, windowHeight);
       setCalculatedPosition((offsetTop + offsetHeight + 200) >= windowHeight ? 'bottom-[50%]' : 'top-[50%]');
    }, [isOpen]);
 

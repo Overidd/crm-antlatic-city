@@ -11,15 +11,22 @@ export const PublicRoute = () => (
          element={<LayoutAuth />}
       >
          <Route
-            path="/login"
-            element={<LoginScreen />} />
-         <Route
-            path="/recover"
-            element={<RecoverScreen />} />
-         <Route
             index
             path="*"
-            element={<Navigate to="/login" replace />} />
+            element={<Navigate to="/login" replace />}
+         />
+         <Route
+            path="/login"
+            element={<LoginScreen />}
+         />
+         <Route
+            path="/recover"
+            element={<RecoverScreen />}
+         />
+         {/* <Route
+            path="/*"
+            element={<Navigate to="/auth/login" />}
+         /> */}
       </Route>
    </Routes>
 )

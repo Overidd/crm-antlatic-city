@@ -1,6 +1,7 @@
 import {
    IClient,
    IClientAll,
+   IClientProfile,
    IFilter,
    IGetAll
 } from '@/domain/interface';
@@ -97,5 +98,29 @@ export class ClientApi {
          prev,
          items,
       };
+   };
+
+   public getById = async (id: string): Promise<IClientProfile> => {
+      const res = await fetch(`${import.meta.env.VITE_URL_API}/clients/${id}`, {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+
+      const client: IClientProfile = await res.json();
+      return {
+         ...client,
+         age: client.age ? `${new Date().getFullYear() - new Date(client.age).getFullYear()}` : '',
+      }
+   };
+
+   public deleteById = async (id: string): Promise<void> => {
+      await fetch(`${import.meta.env.VITE_URL_API}/clients/${id}`, {
+         method: 'DELETE',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
    };
 }

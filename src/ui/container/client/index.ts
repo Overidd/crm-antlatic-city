@@ -5,3 +5,5 @@ export * from './ClientFilterGame';
 export * from './ClientExpenseLevelFilter';
 export * from './ClientStatusFilter';
 export * from './ClientLocationFilter';
+export * from './ClientActionBtnModal'
+export * from './ClientModal';

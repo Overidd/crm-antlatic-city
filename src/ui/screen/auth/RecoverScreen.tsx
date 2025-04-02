@@ -8,6 +8,7 @@ export const RecoverScreen = () => {
          <Input
             type="email"
             placeholder="Email"
+            variant='standard'
             icon="email"
          />
          <Container>
@@ -21,7 +22,7 @@ export const RecoverScreen = () => {
          </Container>
          <Button
             label="Validar email"
-            variant="outline"
+            variant="primary"
          />
       </form >
    )

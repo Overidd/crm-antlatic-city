@@ -1,11 +1,11 @@
 
-import { Navigate, Route, Routes } from "react-router-dom";
-import { AppLayout } from "../layout/app";
-import { Clients } from "../screen/client";
-import {
-   Dashboard,
-   Promotions
-} from "../screen/dashboard";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { AppLayout } from '../layout/app';
+import { Dashboard } from '../screen/dashboard';
+import { Clients } from '../screen/clients';
+import { ClientProfile } from '../screen/clientProfile';
+import { Promotions } from '../screen/promotion';
+import { Calendar } from '../screen/calendar';
 
 export const PrivateRoute = () => (
    <Routes>
@@ -22,13 +22,19 @@ export const PrivateRoute = () => (
             element={<Clients />}
          />
          <Route
+            path='/client-profile/:id'
+            element={<ClientProfile />}
+         />
+         <Route
             path='/promotion'
             element={<Promotions />}
          />
          <Route
-            path="/*"
-            element={<Navigate to="/auth/login" replace />}
+            path='/calendar'
+            element={<Calendar />}
          />
+         <Route path="/*" element={<Navigate to="/" />} />
+
       </Route>
    </Routes>
 )

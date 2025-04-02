@@ -32,25 +32,26 @@
       @apply relative;
    }
 
-   .menu-item-arrow-active {
-      /* @apply rotate-180 text-brand-500 dark:text-brand-400; */
-   }
-
+   
    .menu-item-arrow-inactive {
       @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300;
+   }
+   /** Style Submenu  */
+   .menu-item-arrow-active {
+      /* @apply text-secondary-light-300 text-secondary-light-100; */
+      /* @apply rotate-180 text-brand-500 dark:text-brand-400; */
    }
 
    .menu-dropdown-item {
       @apply relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-theme-sm font-medium;
    }
 
-   /** Style Submenu  */
    .menu-dropdown-item-inactive {
       @apply text-gray-300 hover:bg-tertiary-light-100 hover:text-secondary-light-200 dark:text-gray-300 dark:hover:bg-white/5;
    }
    
    .menu-dropdown-item-active {
-      @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+      @apply bg-tertiary-light-100 text-secondary-light-200 dark:bg-brand-500/[0.12] dark:text-brand-400;
    }
 
    /* .menu-dropdown-badge {
@@ -67,7 +68,6 @@
 }
 
 @layer utilities {
-
    /* Chrome, Safari and Opera */
    .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -96,9 +96,89 @@
    .gradient-bg {
       @apply bg-[linear-gradient(to_top_right,_#b79044_0%,_#000000_70%)]
    }
+
+   /* Para Chrome, Edge y Safari */
+   input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+   }
+   
+   /* Para Firefox */
+   input[type="date"] {
+      appearance: none;
+      -moz-appearance: none;
+   }
+   /* Chrome, Safari, Edge */
+   input[type="time"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+   }
+   
+   /* Firefox */
+   input[type="time"] {
+      -moz-appearance: textfield;
+   }
+   
+   html{
+      scrollbar-width: thin;
+      scrollbar-color: #b79044 #000000;
+   }
+   /* 
+   .custom-calendar .fc-h-event {
+      background-color: transparent;
+      border: none;
+      color: black;
+   } */
+   /* Cambia el color de fondo de todos los botones */
+   .custom-calendar .fc .fc-button {
+      @apply bg-primary-light-200 bg-tertiary-light-200;      
+   }
+   
+   /* Cambiar color al pasar el mouse */
+   .custom-calendar .fc .fc-button:hover {
+      @apply bg-secondary-light-300 text-primary-light-200;
+   }
+   
+   /* Cambiar color del botón activo */
+   .custom-calendar .fc .fc-button-active {
+      @apply bg-primary-light-200 bg-secondary-light-300 !important;
+   }
+
+   /*Header  */
+   .custom-calendar .fc-toolbar-title {
+      @apply text-secondary-light-200;
+   }
+
+   .custom-calendar .fc .fc-button {
+      @apply border border-secondary-light-300/50 text-secondary-light-200;
+   }
+
+   .custom-calendar .fc-theme-standard th {
+      @apply text-secondary-light-200;
+   }
+
+   .custom-calendar .fc-daygrid-day {
+      @apply border border-secondary-light-300/50;
+   }
+
+   .custom-calendar .fc-theme-standard .fc-scrollgrid {
+      @apply border-secondary-light-300/50;
+   }
+   .custom-calendar .fc-theme-standard .fc-scrollgrid *{
+      @apply border-secondary-light-300/50 !important;
+   }
+
+   .custom-calendar .fc-daygrid-day-number {
+      @apply text-secondary-light-200;
+   }
+    
+   .custom-calendar .fc-event {
+      /* border: 2px solid #4F46E5 !important; */
+   }
 }
 
+
 .apexcharts-xaxis text,
-.apexcharts-yaxis text {
-   fill: white ;
+   .apexcharts-yaxis text {
+      fill: white ;
 }
