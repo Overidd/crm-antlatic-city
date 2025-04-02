@@ -1,3 +1,4 @@
-export * from './useCheckAuth';
-export * from './useClients';
+export * from './useAuth';
+export * from './useAuthCheck';
 export * from './useClientProfile';
+export * from './useClients';

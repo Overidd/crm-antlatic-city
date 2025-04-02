@@ -39,14 +39,14 @@ export const TableClients = ({ clients, onSelectedClient, initSelected, isLoadin
             cellPadding='10'
             className="max-w-full"
          >
-            <TableHeader className="border-b-2 border-tertiary-light-200">
+            <TableHeader className="border-b-2 border-tertiary-light-100">
                <TableHeaderItem
                   initChecked={isCheckedAll()}
                   onCheckBoxAll={onCheckBoxAll}
                />
             </TableHeader>
             <TableBody
-               className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]"
+               className="divide-y-2 divide-tertiary-light-100 dark:divide-white/[0.05]"
             >
                {
                   isLoading
@@ -142,7 +142,7 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
    }
 
    return (
-      <TableRow className='hover:bg-tertiary-light-200 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
+      <TableRow className='hover:bg-tertiary-light-100 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
          <TableCell className="py-3">
             <Checkbox
                width="w-5"
@@ -199,7 +199,7 @@ const TableRowItemSkeleton = () => {
          {
             Array.from({ length: 7 }).map((_, index) => (
                <TableCell className="py-3" key={index}>
-                  <div className="h-10 animate-pulse space-y-2 overflow-hidden bg-tertiary-light-200"></div>
+                  <div className="h-10 animate-pulse space-y-2 overflow-hidden bg-tertiary-light-100"></div>
                </TableCell>
             ))
          }

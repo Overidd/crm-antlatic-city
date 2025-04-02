@@ -126,10 +126,22 @@ export const Calendar: React.FC = () => {
             ref={calendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
+            events={events}
+            locale={["es"]}
+            selectable={true}
+            select={handleDateSelect}
+            eventClick={handleEventClick}
+            eventContent={renderEventContent}
             headerToolbar={{
-              left: "prev,next today",
+              left: "prev,next addEventButton",
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            customButtons={{
+              addEventButton: {
+                text: "Agregar Nuevo Evento",
+                click: () => openSheet('event-modal-calendar'),
+              },
             }}
             buttonText={{
               today: "Hoy",
@@ -139,18 +151,6 @@ export const Calendar: React.FC = () => {
               list: "Lista",
               // prev: "←", // Puedes poner "Anterior"
               // next: "→", // Puedes poner "Siguiente"
-            }}
-            events={events}
-            locale={["es"]}
-            selectable={true}
-            select={handleDateSelect}
-            eventClick={handleEventClick}
-            eventContent={renderEventContent}
-            customButtons={{
-              addEventButton: {
-                text: "Add Event +",
-                // click: openSheet,
-              },
             }}
           />
         </div>

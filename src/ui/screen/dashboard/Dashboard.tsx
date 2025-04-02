@@ -22,7 +22,7 @@ interface CardGraphProps {
 
 export const CardGraph = ({ className, children }: CardGraphProps) => {
    return (
-      <section className={`bg-tertiary-light-100 text-white rounded-lg overflow-hidden ${className}`}>
+      <section className={`bg-tertiary-light-200 text-white rounded-lg overflow-hidden ${className}`}>
          {children}
       </section>
    )
@@ -210,7 +210,12 @@ const StatisticVistGames = () => {
 
    return (
       <CardGraph>
-         <Chart options={options} series={series} type="bar" height={'100%'} />
+         <Chart
+            options={options}
+            series={series}
+            height={'100%'}
+            type="bar"
+         />
       </CardGraph>
    );
 };

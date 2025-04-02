@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { startGetClients } from '../store/client';
 import { AppDispatch } from '../store';
 
-export const useCheckAuth = () => {
+export const useAuthCheck = () => {
 
    const dispatch: AppDispatch = useDispatch()
    useEffect(() => {

@@ -118,16 +118,67 @@
    input[type="time"] {
       -moz-appearance: textfield;
    }
- 
-   .apexcharts-xaxis text,
-   .apexcharts-yaxis text {
-      fill: white ;
-   }
    
    html{
       scrollbar-width: thin;
       scrollbar-color: #b79044 #000000;
    }
+   /* 
+   .custom-calendar .fc-h-event {
+      background-color: transparent;
+      border: none;
+      color: black;
+   } */
+   /* Cambia el color de fondo de todos los botones */
+   .custom-calendar .fc .fc-button {
+      @apply bg-primary-light-200 bg-tertiary-light-200;      
+   }
+   
+   /* Cambiar color al pasar el mouse */
+   .custom-calendar .fc .fc-button:hover {
+      @apply bg-secondary-light-300 text-primary-light-200;
+   }
+   
+   /* Cambiar color del botón activo */
+   .custom-calendar .fc .fc-button-active {
+      @apply bg-primary-light-200 bg-secondary-light-300 !important;
+   }
+
+   /*Header  */
+   .custom-calendar .fc-toolbar-title {
+      @apply text-secondary-light-200;
+   }
+
+   .custom-calendar .fc .fc-button {
+      @apply border border-secondary-light-300/50 text-secondary-light-200;
+   }
+
+   .custom-calendar .fc-theme-standard th {
+      @apply text-secondary-light-200;
+   }
+
+   .custom-calendar .fc-daygrid-day {
+      @apply border border-secondary-light-300/50;
+   }
+
+   .custom-calendar .fc-theme-standard .fc-scrollgrid {
+      @apply border-secondary-light-300/50;
+   }
+   .custom-calendar .fc-theme-standard .fc-scrollgrid *{
+      @apply border-secondary-light-300/50 !important;
+   }
+
+   .custom-calendar .fc-daygrid-day-number {
+      @apply text-secondary-light-200;
+   }
+    
+   .custom-calendar .fc-event {
+      /* border: 2px solid #4F46E5 !important; */
+   }
 }
 
 
+.apexcharts-xaxis text,
+   .apexcharts-yaxis text {
+      fill: white ;
+}
