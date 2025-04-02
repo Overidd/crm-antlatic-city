@@ -1,12 +1,14 @@
 import { ClientService } from '@/application/service';
 import { ClientApi } from '@/infrastructure/api';
 import { AppDispatch, RootState } from '../store';
-import { errorLoading, loadClientsSuccess } from './client.slice';
+import { errorLoading, loadClientsSuccess, setLoading } from './client.slice';
 
 const clientService = new ClientService(new ClientApi());
 
 const fetchClients = (page: number, limit: number) => {
    return async (dispatch: AppDispatch, getState: () => RootState) => {
+      dispatch(setLoading());
+      await new Promise((resolve) => setTimeout(resolve, 300));
       const { filter } = getState().clientReduce;
       const { ok, clients, messageError } = await clientService.getAll({
          page,
@@ -28,9 +30,9 @@ const fetchClients = (page: number, limit: number) => {
    };
 };
 
-export const startGetClients = () => fetchClients(1, 5);
+export const startGetClients = () => fetchClients(1, 7);
 
-export const startGetClientsByPage = (page: number) => fetchClients(page, 5);
+export const startGetClientsByPage = (page: number) => fetchClients(page, 7);
 
 
 // export const startGetNextClients = () => {

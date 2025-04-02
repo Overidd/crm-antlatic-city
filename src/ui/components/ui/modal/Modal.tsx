@@ -40,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({
       let transformStyles = (mounted) ? 'scale-100 opacity-100' : 'scale-0 opacity-0';
 
       if (!isOpen) {
-         transformStyles = (isOpen) ? 'scale-100 opacity-100' : 'scale-0 opacity-10';
+         transformStyles = (isOpen) ? 'scale-100 opacity-100' : 'scale-0 opacity-0';
       }
       return clsx(
          "transition-transform duration-300 ease-out",

@@ -11,11 +11,11 @@ const Open = ({ idModal, children, className }: ModalTriggerProps) => {
    const { openSheet } = useSheet(idModal);
 
    return (
-      <button
+      <div
          className={className}
          onClick={() => openSheet(idModal)}>
          {children}
-      </button>
+      </div>
    );
 };
 
@@ -24,11 +24,11 @@ const Close = ({ idModal, children, className }: ModalTriggerProps) => {
    const { closeSheet } = useSheet(idModal);
 
    return (
-      <button
+      <div
          className={className}
          onClick={() => closeSheet(idModal)}>
          {children}
-      </button>
+      </div>
    );
 };
 

@@ -16,7 +16,7 @@
             "Roulette"
          ],
          "gender": "masculino",
-         "age": "21/05/1990",
+         "age": "05/21/1990",
          "totalExpenses": 13000,
          "totalWithdrawals": 7000,
          "totalDeposits": 15000,
@@ -40,7 +40,7 @@
             "Gates of Olympus"
          ],
          "gender": "femenino",
-         "age": "50/05/2000",
+         "age": "05/20/2000",
          "country": "Perú",
          "firstName": "Valeria",
          "lastName": "Castro",
@@ -75,7 +75,7 @@
             "Gates of Olympus"
          ],
          "gender": "masculino",
-         "age": "20/09/1990"
+         "age": "09/20/1990"
       },
       {
          "id": 4,
@@ -100,7 +100,7 @@
             "Roulette"
          ],
          "gender": "femenino",
-         "age": "10/08/1993"
+         "age": "08/10/1993"
       },
       {
          "id": 5,
@@ -124,7 +124,7 @@
             "Gates of Olympus"
          ],
          "gender": "masculino",
-         "age": "05/11/1992"
+         "age": "11/05/1992"
       },
       {
          "id": 6,
@@ -149,7 +149,7 @@
             "Gates of Olympus"
          ],
          "gender": "masculino",
-         "age": "02/05/1996"
+         "age": "05/02/1996"
       },
       {
          "id": 7,
@@ -174,7 +174,7 @@
             "Roulette"
          ],
          "gender": "femenino",
-         "age": "30/05/2000"
+         "age": "05/30/2000"
       },
       {
          "id": 8,
@@ -199,7 +199,7 @@
             "Gates of Olympus"
          ],
          "gender": "masculino",
-         "age": "25/12/1989"
+         "age": "12/25/1989"
       },
       {
          "id": 9,
@@ -223,7 +223,7 @@
             "Gates of Olympus"
          ],
          "gender": "femenino",
-         "age": "10/05/1998"
+         "age": "05/10/1998"
       },
       {
          "id": 10,
@@ -250,7 +250,267 @@
             "Gates of Olympus"
          ],
          "gender": "masculino",
-         "age": "16/07/1986"
+         "age": "07/16/1986"
+      },
+      {
+         "id": 11,
+         "avatar": "https://randomuser.me/api/portraits/women/8.jpg",
+         "username": "LaReinaDelPoker",
+         "firstName": "María",
+         "lastName": "Gómez",
+         "country": "México",
+         "email": "maria.gomez@example.com",
+         "city": "Ciudad de México",
+         "phone": "+52 55 1234 5678",
+         "status": "active",
+         "totalExpenses": 22000,
+         "totalWithdrawals": 12000,
+         "totalDeposits": 25000,
+         "availableBalance": 8000,
+         "totalBonuses": 5000,
+         "totalPromotions": 2000,
+         "pendingPayment": 500,
+         "GamePreferences": [
+            "Poker",
+            "Slots",
+            "Black Jack"
+         ],
+         "gender": "femenino",
+         "age": "03/22/1992"
+      },
+      {
+         "id": 12,
+         "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
+         "username": "RuletaLoco",
+         "firstName": "Carlos",
+         "lastName": "Fernández",
+         "country": "Argentina",
+         "email": "carlos.fernandez@example.com",
+         "city": "Buenos Aires",
+         "phone": "+54 9 11 9876 5432",
+         "status": "inactive",
+         "totalExpenses": 15000,
+         "totalWithdrawals": 5000,
+         "totalDeposits": 18000,
+         "availableBalance": 3000,
+         "totalBonuses": 3500,
+         "totalPromotions": 1200,
+         "pendingPayment": 400,
+         "GamePreferences": [
+            "Roulette",
+            "Slots",
+            "Baccarat"
+         ],
+         "gender": "masculino",
+         "age": "09/05/1985"
+      },
+      {
+         "id": 13,
+         "avatar": "https://randomuser.me/api/portraits/women/15.jpg",
+         "username": "LuckyGirl",
+         "firstName": "Valeria",
+         "lastName": "Rodríguez",
+         "country": "Colombia",
+         "email": "valeria.rodriguez@example.com",
+         "city": "Bogotá",
+         "phone": "+57 310 456 7890",
+         "status": "active",
+         "totalExpenses": 12000,
+         "totalWithdrawals": 6000,
+         "totalDeposits": 14000,
+         "availableBalance": 4000,
+         "totalBonuses": 3000,
+         "totalPromotions": 1500,
+         "pendingPayment": 200,
+         "GamePreferences": [
+            "Poker",
+            "Black Jack",
+            "Gates of Olympus"
+         ],
+         "gender": "femenino",
+         "age": "11/12/1995"
+      },
+      {
+         "id": 14,
+         "avatar": "https://randomuser.me/api/portraits/men/20.jpg",
+         "username": "MegaApostador",
+         "firstName": "Javier",
+         "lastName": "López",
+         "country": "España",
+         "email": "javier.lopez@example.com",
+         "city": "Madrid",
+         "phone": "+34 612 345 678",
+         "status": "suspended",
+         "totalExpenses": 30000,
+         "totalWithdrawals": 15000,
+         "totalDeposits": 35000,
+         "availableBalance": 7000,
+         "totalBonuses": 6000,
+         "totalPromotions": 2500,
+         "pendingPayment": 1000,
+         "GamePreferences": [
+            "Black Jack",
+            "Poker",
+            "Craps"
+         ],
+         "gender": "masculino",
+         "age": "08/30/1980"
+      },
+      {
+         "id": 15,
+         "avatar": "https://randomuser.me/api/portraits/women/25.jpg",
+         "username": "GirosDeFortuna",
+         "firstName": "Ana",
+         "lastName": "Martínez",
+         "country": "Perú",
+         "email": "ana.martinez@example.com",
+         "city": "Lima",
+         "phone": "+51 987 654 321",
+         "status": "active",
+         "totalExpenses": 17000,
+         "totalWithdrawals": 7000,
+         "totalDeposits": 19000,
+         "availableBalance": 5000,
+         "totalBonuses": 4500,
+         "totalPromotions": 1600,
+         "pendingPayment": 350,
+         "GamePreferences": [
+            "Slots",
+            "Gates of Olympus",
+            "Roulette"
+         ],
+         "gender": "femenino",
+         "age": "06/18/1990"
+      },
+      {
+         "id": 16,
+         "avatar": "https://randomuser.me/api/portraits/men/30.jpg",
+         "username": "JackPotKing",
+         "firstName": "Fernando",
+         "lastName": "Ramírez",
+         "country": "México",
+         "email": "fernando.ramirez@example.com",
+         "city": "Guadalajara",
+         "phone": "+52 33 9876 5432",
+         "status": "active",
+         "totalExpenses": 25000,
+         "totalWithdrawals": 13000,
+         "totalDeposits": 28000,
+         "availableBalance": 9000,
+         "totalBonuses": 6000,
+         "totalPromotions": 3000,
+         "pendingPayment": 700,
+         "GamePreferences": [
+            "Poker",
+            "Roulette",
+            "Slots"
+         ],
+         "gender": "masculino",
+         "age": "02/14/1988"
+      },
+      {
+         "id": 17,
+         "avatar": "https://randomuser.me/api/portraits/women/35.jpg",
+         "username": "LadyCasino",
+         "firstName": "Sofía",
+         "lastName": "Hernández",
+         "country": "Argentina",
+         "email": "sofia.hernandez@example.com",
+         "city": "Córdoba",
+         "phone": "+54 9 351 654 3210",
+         "status": "inactive",
+         "totalExpenses": 18000,
+         "totalWithdrawals": 8000,
+         "totalDeposits": 21000,
+         "availableBalance": 5000,
+         "totalBonuses": 4500,
+         "totalPromotions": 1900,
+         "pendingPayment": 600,
+         "GamePreferences": [
+            "Black Jack",
+            "Baccarat",
+            "Craps"
+         ],
+         "gender": "femenino",
+         "age": "07/03/1993"
+      },
+      {
+         "id": 18,
+         "avatar": "https://randomuser.me/api/portraits/men/40.jpg",
+         "username": "ElMaestroDeLasCartas",
+         "firstName": "Ricardo",
+         "lastName": "Castillo",
+         "country": "España",
+         "email": "ricardo.castillo@example.com",
+         "city": "Barcelona",
+         "phone": "+34 645 789 123",
+         "status": "active",
+         "totalExpenses": 32000,
+         "totalWithdrawals": 18000,
+         "totalDeposits": 40000,
+         "availableBalance": 12000,
+         "totalBonuses": 7500,
+         "totalPromotions": 2800,
+         "pendingPayment": 900,
+         "GamePreferences": [
+            "Poker",
+            "Black Jack",
+            "Texas Hold'em"
+         ],
+         "gender": "masculino",
+         "age": "12/25/1975"
+      },
+      {
+         "id": 19,
+         "avatar": "https://randomuser.me/api/portraits/women/45.jpg",
+         "username": "ReinaDeLosDados",
+         "firstName": "Isabel",
+         "lastName": "Morales",
+         "country": "Chile",
+         "email": "isabel.morales@example.com",
+         "city": "Valparaíso",
+         "phone": "+56 9 7654 3210",
+         "status": "suspended",
+         "totalExpenses": 15000,
+         "totalWithdrawals": 5000,
+         "totalDeposits": 16000,
+         "availableBalance": 4000,
+         "totalBonuses": 3500,
+         "totalPromotions": 1400,
+         "pendingPayment": 450,
+         "GamePreferences": [
+            "Craps",
+            "Slots",
+            "Roulette"
+         ],
+         "gender": "femenino",
+         "age": "10/08/1984"
+      },
+      {
+         "id": 20,
+         "avatar": "https://randomuser.me/api/portraits/men/50.jpg",
+         "username": "ApuestaMaxima",
+         "firstName": "Hugo",
+         "lastName": "Santos",
+         "country": "Perú",
+         "email": "hugo.santos@example.com",
+         "city": "Arequipa",
+         "phone": "+51 987 321 654",
+         "status": "active",
+         "totalExpenses": 20000,
+         "totalWithdrawals": 10000,
+         "totalDeposits": 23000,
+         "availableBalance": 7000,
+         "totalBonuses": 5000,
+         "totalPromotions": 2100,
+         "pendingPayment": 550,
+         "GamePreferences": [
+            "Slots",
+            "Poker",
+            "Gates of Olympus"
+         ],
+         "gender": "masculino",
+         "age": "05/11/1990"
       }
    ]
 }

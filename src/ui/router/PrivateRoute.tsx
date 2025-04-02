@@ -1,12 +1,11 @@
 
-import { Navigate, Route, Routes } from "react-router-dom";
-import { AppLayout } from "../layout/app";
-import { Clients } from "../screen/clients";
-import { ClientProfile } from "../screen/clientProfile";
-import {
-   Dashboard,
-   Promotions
-} from "../screen/dashboard";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { AppLayout } from '../layout/app';
+import { Dashboard } from '../screen/dashboard';
+import { Clients } from '../screen/clients';
+import { ClientProfile } from '../screen/clientProfile';
+import { Promotions } from '../screen/promotion';
+import { Calendar } from '../screen/calendar';
 
 export const PrivateRoute = () => (
    <Routes>
@@ -29,6 +28,10 @@ export const PrivateRoute = () => (
          <Route
             path='/promotion'
             element={<Promotions />}
+         />
+         <Route
+            path='/calendar'
+            element={<Calendar />}
          />
          <Route
             path="/*"

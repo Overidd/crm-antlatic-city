@@ -32,19 +32,20 @@
       @apply relative;
    }
 
-   .menu-item-arrow-active {
-      /* @apply rotate-180 text-brand-500 dark:text-brand-400; */
-   }
-
+   
    .menu-item-arrow-inactive {
       @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300;
+   }
+   /** Style Submenu  */
+   .menu-item-arrow-active {
+      /* @apply text-secondary-light-300 text-secondary-light-100; */
+      /* @apply rotate-180 text-brand-500 dark:text-brand-400; */
    }
 
    .menu-dropdown-item {
       @apply relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-theme-sm font-medium;
    }
 
-   /** Style Submenu  */
    .menu-dropdown-item-inactive {
       @apply text-gray-300 hover:bg-tertiary-light-100 hover:text-secondary-light-200 dark:text-gray-300 dark:hover:bg-white/5;
    }
@@ -67,7 +68,6 @@
 }
 
 @layer utilities {
-
    /* Chrome, Safari and Opera */
    .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -96,14 +96,38 @@
    .gradient-bg {
       @apply bg-[linear-gradient(to_top_right,_#b79044_0%,_#000000_70%)]
    }
+
+   /* Para Chrome, Edge y Safari */
+   input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+   }
+   
+   /* Para Firefox */
+   input[type="date"] {
+      appearance: none;
+      -moz-appearance: none;
+   }
+   /* Chrome, Safari, Edge */
+   input[type="time"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+   }
+   
+   /* Firefox */
+   input[type="time"] {
+      -moz-appearance: textfield;
+   }
+ 
+   .apexcharts-xaxis text,
+   .apexcharts-yaxis text {
+      fill: white ;
+   }
+   
+   html{
+      scrollbar-width: thin;
+      scrollbar-color: #b79044 #000000;
+   }
 }
 
-.apexcharts-xaxis text,
-.apexcharts-yaxis text {
-   fill: white ;
-}
 
-html{
-   scrollbar-width: thin;
-   scrollbar-color: #b79044 #000000;
-}

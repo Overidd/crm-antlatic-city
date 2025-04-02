@@ -2,11 +2,12 @@ import { type TIconsOptions, IconComponent } from '@/ui/asset'
 import { clsx } from '@/ui/util/clsx'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-   icon?: TIconsOptions
-   messageError?: string
-   error?: boolean
-   success?: boolean
-   variant?: 'outlined' | 'filled' | 'standard'
+   icon?: TIconsOptions;
+   messageError?: string;
+   error?: boolean;
+   success?: boolean;
+   variant?: 'outlined' | 'filled' | 'standard';
+   label?: string;
 }
 
 export const Input = ({
@@ -16,6 +17,7 @@ export const Input = ({
    error = false,
    success = false,
    variant = 'standard',
+   label,
    ...rest
 }: InputProps) => {
 
@@ -23,7 +25,7 @@ export const Input = ({
       'relative transition-colors duration-200 ease-in-out bg-tertiary-light-100', {
       // Base styles by variant
       'border-b-2 border-secondary-light-300': variant === 'standard',
-      'border-2 border-transparent rounded-lg px-3': variant === 'outlined',
+      'border border-transparent rounded-lg px-3': variant === 'outlined',
       'border-b-2 border-transparent bg-primary-light-300/20 px-3': variant === 'filled',
 
       // Icon padding
@@ -57,8 +59,14 @@ export const Input = ({
 
    return (
       <fieldset className='space-y-1'>
+         {label
+            &&
+            <label className='text-sm font-semibold text-primary-light-200'>
+               {label}
+            </label>
+         }
          <div className={wrapperClasses}>
-            <input className={inputClasses} aria-invalid={error ? 'true' : 'false'} {...rest} />
+            <input className={`${inputClasses} appearance-none `} aria-invalid={error ? 'true' : 'false'} {...rest} />
 
             {Icon && <Icon className={iconClasses} />}
          </div>

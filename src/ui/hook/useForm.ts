@@ -2,14 +2,20 @@ import { EFieldValidation, fieldValidation, FieldValidationType } from '@/applic
 import { useMemo, useRef, useState, ChangeEvent, FormEvent } from 'react';
 
 // Definimos el tipo del estado del formulario
-export type FormState = Record<string, unknown>;
+export type FormState = Record<string, string>;
 
+interface useFormProps {
+   initialState?: FormState,
+   activeValidation?: boolean,
+   validations?: { [string: string]: [(value: string) => boolean, string] }
+}
 // Hook useForm tipado
-export const useForm = (
-   initialState: FormState = {},
-   activeValidation = true,
-   validations = fieldValidation
-) => {
+export const useForm = ({
+   initialState = {},
+   activeValidation = false,
+   validations = {}
+}: useFormProps) => {
+
    const [formState, setFormState] = useState<FormState>(initialState);
    const [formValidation, setFormValidation] = useState<Record<string, string | null>>({});
 

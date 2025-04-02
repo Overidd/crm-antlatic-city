@@ -10,13 +10,13 @@ import {
    TableRow
 } from '@/ui/components/ui/table';
 
-
 interface IClientTableProps {
    clients: IClient[];
    onSelectedClient: (id: string | string[]) => void;
-   initSelected?: string[]
+   initSelected?: string[];
+   isLoading?: boolean;
 }
-export const TableClients = ({ clients, onSelectedClient, initSelected }: IClientTableProps) => {
+export const TableClients = ({ clients, onSelectedClient, initSelected, isLoading }: IClientTableProps) => {
    const onCheckBoxAll = (value: boolean) => {
       if (value) {
          onSelectedClient(clients.map(item => String(item.id)))
@@ -34,8 +34,11 @@ export const TableClients = ({ clients, onSelectedClient, initSelected }: IClien
    }
 
    return (
-      <div className="bg-transparent overflow-y-auto min-h-[26rem]" >
-         <Table className="max-w-full">
+      <div className="bg-transparent overflow-y-hidden overflow-x-auto" >
+         <Table
+            cellPadding='10'
+            className="max-w-full"
+         >
             <TableHeader className="border-b-2 border-tertiary-light-200">
                <TableHeaderItem
                   initChecked={isCheckedAll()}
@@ -46,27 +49,31 @@ export const TableClients = ({ clients, onSelectedClient, initSelected }: IClien
                className="divide-y-2 divide-tertiary-light-200 dark:divide-white/[0.05]"
             >
                {
-                  isExitClients()
-                     ? clients.map((item) => (
-                        <TableRowItem
-                           key={item.id}
-                           dataItem={item}
-                           checked={initSelected?.includes(String(item.id)) ?? false}
-                           onCheckBox={onSelectedClient}
-                        />
+                  isLoading
+                     ? [...Array(7)].map((_, index) => (
+                        <TableRowItemSkeleton key={index} />
                      ))
-                     : <TableRow className='w-full h-[20rem] relative'>
-                        <TableCell>
-                           <figure className="w-[20rem] text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                              <img
-                                 className='w-full'
-                                 src="./svg/peopleSearch.svg"
-                                 alt="people no found svg"
-                              />
-                              <figcaption className='text-secondary-light-200'>No se encontraron clientes</figcaption>
-                           </figure>
-                        </TableCell>
-                     </TableRow>
+                     : isExitClients()
+                        ? clients.map((item) => (
+                           <TableRowItem
+                              key={item.id}
+                              dataItem={item}
+                              checked={initSelected?.includes(String(item.id)) ?? false}
+                              onCheckBox={onSelectedClient}
+                           />
+                        ))
+                        : <TableRow className='w-full h-[20rem] relative'>
+                           <TableCell>
+                              <figure className="w-[20rem] text-center mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                 <img
+                                    className='w-full'
+                                    src="./svg/peopleSearch.svg"
+                                    alt="people no found svg"
+                                 />
+                                 <figcaption className='text-secondary-light-200'>No se encontraron clientes</figcaption>
+                              </figure>
+                           </TableCell>
+                        </TableRow>
                }
             </TableBody>
          </Table>
@@ -87,7 +94,7 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
             isHeader
             className={`py-3 font-medium uppercase text-start text-theme-xs`}
          >
-            <div className="inline-block align-middle pl-4">
+            <div className="inline-block align-middle">
                <Checkbox
                   onChange={(e) => onCheckBoxAll(e.target.checked)}
                   checked={initChecked}
@@ -101,7 +108,7 @@ const TableHeaderItem = ({ onCheckBoxAll, initChecked }: TableHeaderItemProps) =
                <TableCell
                   key={value}
                   isHeader
-                  className={`px-5 py-3 font-medium uppercase text-start text-theme-xs`}
+                  className={`py-3 font-medium uppercase text-start text-theme-xs`}
                >
                   <span className="inline-block align-middle text-secondary-light-200 font-bold">
                      {value}
@@ -136,7 +143,7 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
 
    return (
       <TableRow className='hover:bg-tertiary-light-200 has-[:checked]:bg-tertiary-light-200 transition-[background-color]' >
-         <TableCell className="pl-4">
+         <TableCell className="py-3">
             <Checkbox
                width="w-5"
                height="h-5"
@@ -146,7 +153,7 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
             />
          </TableCell>
 
-         <TableCell className="px-5 py-4 sm:px-6 text-start">
+         <TableCell className="py-3 text-start">
             <div className="flex items-center gap-3">
                <figure className="w-10 h-10 overflow-hidden rounded-full">
                   <img
@@ -160,27 +167,42 @@ const TableRowItem = ({ dataItem, onCheckBox, checked }: TableRowItemProps) => {
             </div>
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {username}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {email}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-start text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-start text-theme-sm">
             {country}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-theme-sm">
             S/ {totalExpenses}
          </TableCell>
 
-         <TableCell className="px-4 py-3 text-primary-light-200 text-theme-sm">
+         <TableCell className="py-3 text-primary-light-200 text-theme-sm">
             <ClientPopverDetail
                idClient={String(id)}
             />
          </TableCell>
+      </TableRow>
+   )
+}
+
+const TableRowItemSkeleton = () => {
+
+   return (
+      <TableRow >
+         {
+            Array.from({ length: 7 }).map((_, index) => (
+               <TableCell className="py-3" key={index}>
+                  <div className="h-10 animate-pulse space-y-2 overflow-hidden bg-tertiary-light-200"></div>
+               </TableCell>
+            ))
+         }
       </TableRow>
    )
 }

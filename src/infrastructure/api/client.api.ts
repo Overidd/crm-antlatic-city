@@ -107,6 +107,11 @@ export class ClientApi {
             'Content-Type': 'application/json',
          },
       });
-      return await res.json();
+
+      const client: IClientProfile = await res.json();
+      return {
+         ...client,
+         age: client.age ? `${new Date().getFullYear() - new Date(client.age).getFullYear()}` : '',
+      }
    };
 }

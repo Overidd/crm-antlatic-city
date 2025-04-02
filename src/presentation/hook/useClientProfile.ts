@@ -8,12 +8,10 @@ export const useClientProfile = (idClient: string | undefined) => {
    const client = useSelector((state: RootState) => state.clientProfileReduce);
 
    useEffect(() => {
-      if (idClient) {
+      if (idClient && idClient !== '*') {
          dispatch(startGetByIdClient(idClient));
       }
    }, [idClient])
-
-
 
    return {
       ...client

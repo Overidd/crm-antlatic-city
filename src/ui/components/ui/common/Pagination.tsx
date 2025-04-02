@@ -55,9 +55,9 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, siblingCount
       return []
    }, [currentPage, totalPages, siblingCount])
 
-   if (currentPage === 0 || paginationRange.length < 2) {
-      return null
-   }
+   // if (currentPage === 0 || paginationRange.length < 2) {
+   //    return null
+   // }
 
    const onNext = () => {
       if (currentPage < totalPages) {
@@ -73,7 +73,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, siblingCount
 
    return (
       <nav
-         className={clsx("flex items-center justify-between space-x-1", className)}
+         className={clsx("flex items-center justify-between", className)}
          aria-label="Navegación de paginación"
       >
          <PaginationButton
