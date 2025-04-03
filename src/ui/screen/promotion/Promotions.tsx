@@ -1,4 +1,3 @@
-import { clsx as cn } from '@/ui/util/'
 import { useRef, useState } from 'react';
 import { Search, Upload, X } from 'lucide-react'
 
@@ -13,27 +12,9 @@ export const Promotions = () => {
 }
 
 
-
-interface Cliente {
-   id: string
-   nombre: string
-   rol: string
-}
-
 export default function AdminPromocion() {
-   // const [activeTab, setActiveTab] = useState("cargar")
-   const [clientes, setClientes] = useState<Cliente[]>([
-      { id: "1", nombre: "Dina Baluarte", rol: "UX Designer" },
-      { id: "2", nombre: "Juan José Santibáñez", rol: "Product Manager" },
-      { id: "3", nombre: "Morgan Quero", rol: "Content Writer" },
-      { id: "4", nombre: "Pedro Chavari", rol: "Project Manager" },
-      { id: "5", nombre: "Daniel Urresti", rol: "Creative Writer" },
-      { id: "6", nombre: "Morgan Quero", rol: "Content Writer" },
-   ])
+   const { clearCliente, clients } = useClientPromotion()
 
-   const eliminarCliente = (id: string) => {
-      setClientes(clientes.filter((cliente) => cliente.id !== id))
-   }
 
    return (
       <ComponentCard
@@ -80,17 +61,18 @@ export default function AdminPromocion() {
 
          {/* Selección de clientes */}
          <div className="row-span-2 text-primary-light-200 w-full shadow-md shadow-tertiary-light-300 rounded-lg p-6 space-y-6">
-            {clientes.map((cliente) => (
-               <div key={cliente.id} className="flex items-center justify-between border-b-2 border-tertiary-light-100">
-                  <div>
-                     <p className="font-medium text-sm">{cliente.nombre}</p>
+            {clients.map((cliente) => (
+               <div key={cliente.id} className="flex items-center justify-between border-b-2 border-tertiary-light-100 gap-4">
+                  <div className='w-[60%]'>
+                     <p className="font-medium text-sm">{cliente.firstName}</p>
+                     <p className='text-xs whitespace-nowrap text-ellipsis overflow-hidden'>{cliente.email}</p>
                   </div>
                   <Button
                      label=""
                      variant="primary"
-                     className="max-w-fit"
+                     className="max-w-fit ml-auto"
                      startIcon={<X className="h-4 w-4" />}
-                     onClick={() => eliminarCliente(cliente.id)}
+                     onClick={() => clearCliente(cliente.id)}
                   >
                   </Button>
                </div>
@@ -107,6 +89,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Button, Input } from "@/ui/components/ui";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/components/ui/tabs";
 import { ComponentCard } from '@/ui/components/ui/card';
+import { useClientPromotion } from '@/presentation/hook';
 
 const Plantilla = () => {
    const editorRef = useRef<any>(null);

@@ -26,7 +26,7 @@ export const ClientPopverDetail = ({ idClient, username, deleteClientById }: Cli
 
    const confirmDelete = () => {
       deleteClientById(idClient);
-      toast('Cliente eliminado', { type: 'success' });
+      toast('Cliente eliminado', { type: 'success', className: 'text-primary-light-200 bg-tertiary-light-200 shadow shadow-black' });
    }
 
    return (
