@@ -11,6 +11,7 @@ import {
    selectedClient,
    clearSelectedClients,
    startDeleteClientById,
+   startCreateClientPromotion,
 } from '../store/client';
 
 export const useClients = () => {
@@ -69,6 +70,12 @@ export const useClients = () => {
       dispatch(startDeleteClientById(idClient))
    };
 
+   const createClientPromotion = () => {
+      console.log('createClientPromotion')
+      dispatch(startCreateClientPromotion())
+      dispatch(clearSelectedClients())
+   };
+
    const hasSelectedClient = () => clientsState.selectedClients.length > 0;
 
    return {
@@ -84,5 +91,6 @@ export const useClients = () => {
       setSelectedClient,
       hasSelectedClient,
       deleteClientById,
+      createClientPromotion,
    };
 };

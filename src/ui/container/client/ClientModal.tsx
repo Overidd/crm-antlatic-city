@@ -1,12 +1,19 @@
 import { Button } from '@/ui/components/ui';
-import { Modal } from '@/ui/components/ui/modal';
+import { Modal, ModalTrigger } from '@/ui/components/ui/modal';
+import { toast } from 'react-toastify';
 
 
 interface ClientModalProps {
    currentData: string[]
+   onAddClient?: () => void
 }
 
-export const ModalAddPromotion = ({ currentData }: ClientModalProps) => {
+export const ModalAddPromotion = ({ currentData, onAddClient }: ClientModalProps) => {
+
+   const onClick = () => {
+      onAddClient?.();
+      toast('Clientes agregados', { type: 'success', className: 'text-primary-light-200 bg-tertiary-light-200 shadow shadow-black' });
+   }
 
    return (
       <Modal
@@ -19,10 +26,13 @@ export const ModalAddPromotion = ({ currentData }: ClientModalProps) => {
          <p className='text-primary-light-200 font-semibold text-lg'>
             Deseas agregar {currentData.length === 1 ? 'un cliente' : `${currentData.length} clientes`} para promociones
          </p>
-         <Button
-            label={`Agregar`}
-            variant='primary'
-         />
+         <ModalTrigger.Close idModal='add-client-modal'>
+            <Button
+               label={`Agregar`}
+               variant='primary'
+               onClick={onClick}
+            />
+         </ModalTrigger.Close>
       </Modal>
    )
 }

@@ -1,9 +1,10 @@
-import { ClientService } from '@/application/service';
-import { ClientApi } from '@/infrastructure/api';
+import { ClientPromotionService, ClientService } from '@/application/service';
+import { ClientApi, ClientPromotionApi } from '@/infrastructure/api';
 import { AppDispatch, RootState } from '../store';
 import { deleteClientSuccess, errorLoading, loadClientsSuccess, setLoading } from './client.slice';
 
 const clientService = new ClientService(new ClientApi());
+const clientPromotionService = new ClientPromotionService(new ClientPromotionApi());
 
 const fetchClients = (page: number, limit: number) => {
    return async (dispatch: AppDispatch, getState: () => RootState) => {
@@ -44,6 +45,13 @@ export const startDeleteClientById = (id: string) => {
       }
       dispatch(deleteClientSuccess(id));
    };
+}
+
+export const startCreateClientPromotion = () => {
+   return async (dispatch: AppDispatch, getState: () => RootState) => {
+      const { selectedClients } = getState().clientReduce;
+      await clientPromotionService.create(selectedClients);
+   }
 }
 
 // export const startGetNextClients = () => {

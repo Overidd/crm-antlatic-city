@@ -20,6 +20,7 @@ export const Clients = () => {
       fetchClientsByPage,
       selectedClients,
       hasSelectedClient,
+      createClientPromotion,
       pagination: { pages, currentPage },
    } = useClients()
 
@@ -48,6 +49,7 @@ export const Clients = () => {
          )}
          <ModalAddPromotion
             currentData={selectedClients}
+            onAddClient={createClientPromotion}
          />
          <ModalDeleteClient
             currentData={selectedClients}
